@@ -1,2 +1,3 @@
-# bookbot
-BookBot is my first project!
+# lodot
+
+lodot is a simple CLI for producing text mining reports in a machine-actionable format.
