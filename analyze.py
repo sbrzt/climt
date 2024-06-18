@@ -39,24 +39,14 @@ def analyze_text(text):
     # Tokenize text into words and sentences
     words = preprocess_text(text)
     
-    # CHARACTER
+    # COUNTS
     char_count = len(text)
-    '''
-    char_freq = Counter(text.lower()).most_common()
-    char_details = []
-    for char, count in char_freq:
-        frequency_percent = (count / char_count) * 100
-        char_details.append({
-            'char': char,
-            'occurrences': count,
-            'frequency_percent': frequency_percent,
-        })
-    '''
+    word_count = len(words)
 
+    # LEMMA
     lemmatizer = nltk.WordNetLemmatizer()
 
     # WORD
-    word_count = len(words)
     word_freq = Counter(words).most_common(50)
     pos_tags = dict(nltk.pos_tag(words))
     word_details = []
@@ -71,7 +61,7 @@ def analyze_text(text):
             'word': word,
             'occurrences': count,
             'frequency_percent': frequency_percent,
-            'pos_tag': pos_tag,
+            'pos_tag': wordnet_pos,
             'lemma': lemma,
             'senses': senses
         })
@@ -82,8 +72,5 @@ def analyze_text(text):
         'word_details': word_details
     }
 
-    #pprint.pprint(analysis)
-    print(produce.print_table(analysis))
-
-    #ttl = convert.convert_text(word_details)
-    #print(ttl)
+    return analysis
+    
