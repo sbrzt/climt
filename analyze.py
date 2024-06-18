@@ -18,13 +18,25 @@ def preprocess_text(text):
     words = [word for word in words if word not in stop_words]
     return words
 
+def get_wordnet_pos(tag):
+    if tag.startswith('J'):
+        return wn.ADJ
+    elif tag.startswith('V'):
+        return wn.VERB
+    elif tag.startswith('N'):
+        return wn.NOUN
+    elif tag.startswith('R'):
+        return wn.ADV
+    else:
+        return None
+
 def analyze_text(text):
     # Tokenize text into words and sentences
     words = preprocess_text(text)
     
     # CHARACTER
-    '''
     char_count = len(text)
+    '''
     char_freq = Counter(text.lower()).most_common()
     char_details = []
     for char, count in char_freq:
@@ -37,18 +49,6 @@ def analyze_text(text):
     '''
 
     lemmatizer = nltk.WordNetLemmatizer()
-
-    def get_wordnet_pos(tag):
-        if tag.startswith('J'):
-            return wn.ADJ
-        elif tag.startswith('V'):
-            return wn.VERB
-        elif tag.startswith('N'):
-            return wn.NOUN
-        elif tag.startswith('R'):
-            return wn.ADV
-        else:
-            return None
 
     # WORD
     word_count = len(words)
@@ -71,10 +71,8 @@ def analyze_text(text):
             'senses': senses
         })
 
-
-
     analysis = {
-        #'char_count': char_count,
+        'char_count': char_count,
         #'char_details': char_details,
         'word_count': word_count,
         'word_details': word_details
