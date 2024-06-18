@@ -1,10 +1,15 @@
-import nltk, statistics, string
+import nltk, statistics, string, convert, produce
 from collections import Counter
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
 import pprint
 
+# Ensure required NLTK resources are downloaded
+#nltk.download('punkt')
+#nltk.download('stopwords')
+#nltk.download('averaged_perceptron_tagger')
 #nltk.download('wordnet')
+
 
 def preprocess_text(text):
     # Convert text to lowercase
@@ -73,9 +78,12 @@ def analyze_text(text):
 
     analysis = {
         'char_count': char_count,
-        #'char_details': char_details,
         'word_count': word_count,
         'word_details': word_details
     }
 
-    pprint.pprint(analysis)
+    #pprint.pprint(analysis)
+    print(produce.print_table(analysis))
+
+    #ttl = convert.convert_text(word_details)
+    #print(ttl)
