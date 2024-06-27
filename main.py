@@ -1,15 +1,42 @@
 import argparse
-import analyze, produce
+import pprint
+from text_analyzer import TextAnalyzer
+from report_generator import ReportGenerator
 
 def main():
-    '''
-    Main function that initializes the analyzer. 
-    '''
-    parser = argparse.ArgumentParser(description="Analyze a text file and generate reports in various formats.")
-    parser.add_argument("input", nargs='?', help="Path to the input text file")
-    parser.add_argument("--file", help="Path to the input text file")
-    parser.add_argument("--output", choices=["stream", "csv"], default="stream", help="Output format")
-    parser.add_argument("--outfile", help="Output file name")
+    parser = argparse.ArgumentParser(
+        description="Analyze a text and generate reports in various formats."
+    )
+    parser.add_argument(
+        "input", 
+        nargs='?', 
+        help="Raw text or path to the input text file"
+    )
+    parser.add_argument(
+        "--file", 
+        help="Path to the input text file"
+    )
+    parser.add_argument(
+        "--output", 
+        choices=[
+            "stream", 
+            "json", 
+            "txt"
+        ], 
+        default="stream", 
+        help="Output format"
+    )
+    parser.add_argument(
+        "--outfile", 
+        help="Output file name"
+    )
+    parser.add_argument(
+        "--focus", 
+        nargs='*', 
+        choices=["word"], 
+        default=["word"], 
+        help="Focus of the analysis"
+    )
 
     args = parser.parse_args()
 
@@ -19,18 +46,25 @@ def main():
     elif args.input:
         text = args.input
     else:
-        print("No input text or file provided.")
-        return
+        raise Exception("No input text or file provided.")
         
-    analysis = analyze.analyze_text(text)
+    analyzer = TextAnalyzer(text)
+    analysis = analyzer.analyze(args.focus)
+
+    report_generator = ReportGenerator(analysis)
 
     if args.output == "stream":
-        produce.print_table(analysis)
-    elif args.output == "csv":
+        pprint.pprint(analysis)
+    elif args.output == "json":
         if not args.outfile:
-            print("Filename required for csv output")
+            print("Filename required for JSON output")
         else:
-            produce.save_csv(analysis, args.outfile)
+            report_generator.save_json(args.outfile)
+    elif args.output == "txt":
+        if not args.outfile:
+            print("Filename required for TXT output")
+        else:
+            report_generator.save_txt(args.outfile)
     else:
         print("Invalid choice")
 
