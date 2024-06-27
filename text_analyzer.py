@@ -77,6 +77,17 @@ class TextAnalyzer:
             })
         return word_details
 
+
+    # Type-Token Ratio (TTR): Ratio of unique words (types) to total words (tokens).
+
+    # Common Bigrams: Most frequent pairs of consecutive words.
+    # Common Trigrams: Most frequent triplets of consecutive words.
+
+    # Entities: List of named entities (e.g., persons, locations, organizations) and their frequencies.
+
+    # Sentiment Score: Overall sentiment score of the text (e.g., positive, neutral, negative).
+
+
     def analyze(self, focus):
         if 'word' in focus:
             self.analysis['word_details'] = self.word_analysis()
