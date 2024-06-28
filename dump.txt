@@ -1,0 +1,131 @@
+# Type-Token Ratio (TTR): Ratio of unique words (types) to total words (tokens).
+
+# Readability scores
+
+# Common Bigrams: Most frequent pairs of consecutive words.
+# Common Trigrams: Most frequent triplets of consecutive words.
+
+# Entities: List of named entities (e.g., persons, locations, organizations) and their frequencies.
+
+# Sentiment Score: Overall sentiment score of the text (e.g., positive, neutral, negative).
+
+import nltk
+import string
+from collections import Counter
+from nltk.corpus import stopwords
+from nltk.corpus import wordnet as wn
+import textstat
+
+# Ensure required NLTK resources are downloaded
+#nltk.download('punkt')
+#nltk.download('stopwords')
+#nltk.download('averaged_perceptron_tagger')
+#nltk.download('wordnet')
+
+class TextAnalyzer:
+    def __init__(self, text):
+        self.__text = text
+        self.__processed_text = self.__preprocess_text(self.__text)
+        self.__stopwords_removed_text = self.__remove_stopwords_text(self.__preprocess_text)
+        self.__words = self.get_words(self.__text)
+        self.__prova = self.get_words(self.__stopwords_removed_text)
+        self.__sentences = self.get_sentences(self.__text)
+        self.__char_count = self.get_char_count(self.__text)
+        self.__word_count = self.get_word_count(self.__words)
+        self.__sentence_count = self.get_sentence_count(self.__sentences)
+        self.__words_per_sentence = self.get_words_per_sentence(self.__word_count, self.__sentence_count)
+        self.analysis = self.core_analysis()
+
+    def __preprocess_text(self, text: str) -> str:
+        '''
+        '''
+        # Lower casing
+        text = text.lower()
+
+        # Punctuation removal
+        text = text.translate(str.maketrans('', '', string.punctuation))
+
+        return text
+
+    def __remove_stopwords_text(self, text: str) -> str:
+        '''
+        '''
+        STOPWORDS = set(stopwords.words('english'))
+        return " ".join([word for word in str(text).split() if word not in STOPWORDS])
+
+    def get_words(self, text: str) -> list:
+        '''
+        '''
+        return nltk.word_tokenize(text)
+
+    def get_sentences(self, text: str):
+        '''
+        '''
+        return nltk.sent_tokenize(text)
+
+    def get_char_count(self, text: str) -> int:
+        '''
+        '''
+        return len(text)
+
+    def get_word_count(self, words) -> int:
+        '''
+        '''
+        return len(words)
+
+    def get_sentence_count(self, sentences) -> int:
+        '''
+        '''
+        return len(sentences)
+
+    def get_words_per_sentence(self, word_count, sentence_count):
+        '''
+        '''
+        return word_count / sentence_count
+
+    def __get_wordnet_pos(self, tag):
+        if tag.startswith('J'):
+            return wn.ADJ
+        elif tag.startswith('V'):
+            return wn.VERB
+        elif tag.startswith('N'):
+            return wn.NOUN
+        elif tag.startswith('R'):
+            return wn.ADV
+        else:
+            return None
+
+    def core_analysis(self):
+        return {
+            'char_count': self.__char_count,
+            'word_count': self.__word_count,
+            'sentence_count': self.__sentence_count,
+            'words_per_sentence': self.__words_per_sentence,
+        }
+
+    def word_analysis(self):
+        lemmatizer = nltk.WordNetLemmatizer()
+        word_freq = Counter(self.__prova).most_common(50)
+        pos_tags = dict(nltk.pos_tag(self.__prova))
+        word_details = []
+        for word, count in word_freq:
+            frequency_percent = (count / self.__word_count) * 100
+            pos_tag = pos_tags.get(word, 'N/A')
+            wordnet_pos = self.__get_wordnet_pos(pos_tag) or wn.NOUN
+            lemma = lemmatizer.lemmatize(word, pos=wordnet_pos)
+            synsets = wn.synsets(word, pos=wordnet_pos)
+            senses = [synset.definition() for synset in synsets]
+            word_details.append({
+                'word': word,
+                'occurrences': count,
+                'frequency_percent': frequency_percent,
+                'pos_tag': wordnet_pos,
+                'lemma': lemma,
+                'senses': senses
+            })
+        return word_details
+
+    def analyze(self, focus):
+        if 'word' in focus:
+            self.analysis['word_details'] = self.word_analysis()
+        return self.analysis

@@ -1,8 +1,18 @@
+# Type-Token Ratio (TTR): Ratio of unique words (types) to total words (tokens).
+# Readability scores
+# Common Bigrams: Most frequent pairs of consecutive words.
+# Common Trigrams: Most frequent triplets of consecutive words.
+# Entities: List of named entities (e.g., persons, locations, organizations) and their frequencies.
+# Sentiment Score: Overall sentiment score of the text (e.g., positive, neutral, negative).
+
 import nltk
 import string
 from collections import Counter
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
+from nltk.stem import WordNetLemmatizer
+from nltk.stem.porter import PorterStemmer
+import textstat
 
 # Ensure required NLTK resources are downloaded
 #nltk.download('punkt')
@@ -11,28 +21,184 @@ from nltk.corpus import wordnet as wn
 #nltk.download('wordnet')
 
 class TextAnalyzer:
+    '''
+    description of class
+    '''
+
     def __init__(self, text):
-        self.text = text
-        self.__words = self.preprocess_text(text)
-        self.__sentences = nltk.sent_tokenize(text)
-        self.char_count = len(text)
-        self.word_count = len(self.__words)
-        self.sentence_count = len(self.__sentences)
-        self.syllables_count = sum(len([char for char in word if char in "aeiou"]) for word in self.__words)
-        self.syllables_per_word = self.syllables_count / self.word_count
-        self.words_per_sentence = self.word_count / self.sentence_count
-        self.flesch_kincaid_score = 206.835 - (1.015 * self.words_per_sentence) - (84.6 * self.syllables_per_word)
+        self.__text = text
+        self.__char_count = self.get_char_count(self.__text)
+        self.__text_preprocessed = self.__preprocess_text(self.__text)
+        self.__text_lemmatized = self.__preprocess_text(self.__text, remove_stopwords=True, lemmatization=True)
+        self.__words = self.get_words(self.__text_preprocessed)
+        self.__lemmas = self.get_words(self.__text_lemmatized)
+        self.__word_count = self.get_word_count(self.__words)
+        self.__sentences = self.get_sentences(self.__text)
+        self.__sentence_count = self.get_sentence_count(self.__sentences)
+        self.__word_count_per_sentence = self.get_word_count_per_sentence(self.__word_count, self.__sentence_count)
+        self.__most_common_word_frequencies = self.get_most_common_word_frequencies(self.__lemmas)
+        self.__word_pos = self.get_word_pos(self.__lemmas)
+
         self.analysis = self.core_analysis()
 
-    def preprocess_text(self, text):
-        text = text.lower()
-        text = text.translate(str.maketrans('', '', string.punctuation))
-        words = nltk.word_tokenize(text)
-        stop_words = set(stopwords.words('english'))
-        words = [word for word in words if word not in stop_words]
-        return words
+    
+    def get_char_count(self, text: str) -> int:
+        '''
+        Get the total number of characters in the text.
 
-    def get_wordnet_pos(self, tag):
+        Input:
+            - text: a string representing the text
+
+        Output:
+            - a integer representing the total number of characters
+        '''
+        return len(text)
+
+    def __preprocess_text(self, text: str, remove_stopwords=False, stemming=False, lemmatization=False) -> str:
+        '''
+        Preprocess the input text by converting to lowercase and removing punctuation.
+
+        Input:
+            - text: a string representing the text to be processed
+
+        Output:
+            - a string representing the processed text
+        '''
+
+        # Lower casing
+        text = text.lower()
+
+        # Punctuation removal
+        text = text.translate(str.maketrans('', '', string.punctuation))
+
+        # Stopwords removal
+        if remove_stopwords == True:
+            STOPWORDS = set(stopwords.words('english'))
+            text = " ".join([word for word in str(text).split() if word not in STOPWORDS])
+
+        # Stemming
+        if stemming == True:
+            stemmer = PorterStemmer()
+            text = " ".join([stemmer.stem(word) for word in text.split()])
+
+        # Lemmatization
+        if lemmatization == True:
+            lemmatizer = WordNetLemmatizer()
+            text = " ".join([lemmatizer.lemmatize(word) for word in text.split()])
+
+        return text
+
+    def get_words(self, text: str) -> list:
+        '''
+        Get the words contained in the text.
+
+        Input:
+            - text: a string representing the text
+        
+        Output:
+            - a list of strings, each representing a single word
+        '''
+        return nltk.word_tokenize(text)
+
+    def get_word_count(self, words: list) -> int:
+        '''
+        Get the total number of words in the stext.
+
+        Input:
+            - words: list of strings, each representing a word
+        
+        Output:
+            - a integer representing the total number of words
+        '''
+        return len(words)
+
+    def get_sentences(self, text: str) -> list:
+        '''
+        Get the sentences contained in the text.
+
+        Input:
+            - text: a string representing the text
+
+        Output:
+            - a list of strings, each representing a sentence
+        '''
+        return nltk.sent_tokenize(text)
+
+    def get_sentence_count(self, sentences: list) -> int:
+        '''
+        Get the total number of sentences in the text.
+
+        Input:
+            - sentences: a list of strings, each representing a sentence
+        
+        Output:
+            - a integer representing the total number of sentences
+        '''
+        return len(sentences)
+
+    def get_word_count_per_sentence(self, word_count: int, sentence_count: int) -> float:
+        '''
+        Get the average number of words per sentence in the text.
+
+        Input:
+            - word_count: a integer representing the total number of words in the text
+            - sentence_count: a integer representing the total number of sentences in the text
+
+        Output:
+            - a float representing the average number of words per sentence
+        '''
+        return word_count / sentence_count
+
+    def get_most_common_word_frequencies(self, text):
+        '''
+        Return a list of word-frequency pairs of the N most common words in the text.
+
+        Input:
+            - text: a string representing the text
+
+        Output:
+            - a list of tuples, each representing a word-frequency pair
+        '''
+        return Counter(text).most_common(50)
+
+    def get_word_pos(self, words):
+        '''
+        '''
+        return dict(nltk.pos_tag(words))
+
+
+    def core_analysis(self):
+        '''
+        Return a basic quantitative analysis of the text, consisting in a character count, a word count, a sentence count, and a word per sentence count.
+
+        Output:
+            - a dictionary containing a character count, a word count, a sentence count, and a word per sentence count
+        '''
+        return {
+            'char_count': self.__char_count,
+            'word_count': self.__word_count,
+            'sentence_count': self.__sentence_count,
+            'words_per_sentence': self.__word_count_per_sentence,
+        }
+    
+    def word_analysis(self):
+        word_details = []
+        for word, count in self.__most_common_word_frequencies:
+            frequency_percent = (count / self.__word_count) * 100
+            pos_tag = self.__word_pos.get(word, 'N/A')
+            
+            synsets = wn.synsets(word, pos=pos_tag)
+            senses = [synset.definition() for synset in synsets]
+            word_details.append({
+                'word': word,
+                'occurrences': count,
+                'frequency_percent': frequency_percent,
+                'pos_tag': pos_tag,
+                'senses': senses
+            })
+        return word_details
+    '''
+    def __get_wordnet_pos(self, tag):
         if tag.startswith('J'):
             return wn.ADJ
         elif tag.startswith('V'):
@@ -44,26 +210,14 @@ class TextAnalyzer:
         else:
             return None
 
-    def core_analysis(self):
-        return {
-            'char_count': self.char_count,
-            'word_count': self.word_count,
-            'sentence_count': self.sentence_count,
-            'syllables_count': self.syllables_count,
-            'syllables_per_word': self.syllables_per_word,
-            'words_per_sentence': self.words_per_sentence,
-            'flesch_kincaid_score': self.flesch_kincaid_score
-        }
-
     def word_analysis(self):
-        lemmatizer = nltk.WordNetLemmatizer()
-        word_freq = Counter(self.__words).most_common(50)
-        pos_tags = dict(nltk.pos_tag(self.__words))
+        word_frequencies = self.__most_common_word_frequencies
+        pos_tags = dict(nltk.pos_tag(self.__prova))
         word_details = []
         for word, count in word_freq:
-            frequency_percent = (count / self.word_count) * 100
+            frequency_percent = (count / self.__word_count) * 100
             pos_tag = pos_tags.get(word, 'N/A')
-            wordnet_pos = self.get_wordnet_pos(pos_tag) or wn.NOUN
+            wordnet_pos = self.__get_wordnet_pos(pos_tag) or wn.NOUN
             lemma = lemmatizer.lemmatize(word, pos=wordnet_pos)
             synsets = wn.synsets(word, pos=wordnet_pos)
             senses = [synset.definition() for synset in synsets]
@@ -76,17 +230,7 @@ class TextAnalyzer:
                 'senses': senses
             })
         return word_details
-
-
-    # Type-Token Ratio (TTR): Ratio of unique words (types) to total words (tokens).
-
-    # Common Bigrams: Most frequent pairs of consecutive words.
-    # Common Trigrams: Most frequent triplets of consecutive words.
-
-    # Entities: List of named entities (e.g., persons, locations, organizations) and their frequencies.
-
-    # Sentiment Score: Overall sentiment score of the text (e.g., positive, neutral, negative).
-
+    '''
 
     def analyze(self, focus):
         if 'word' in focus:

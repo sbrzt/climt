@@ -16,7 +16,6 @@ class ReportGenerator:
             txtfile.write(f"Character Count: {self.analysis['char_count']}\n")
             txtfile.write(f"Word Count: {self.analysis['word_count']}\n")
             txtfile.write(f"Sentence Count: {self.analysis['sentence_count']}\n")
-            txtfile.write(f"Flesch Kincaid Score: {self.analysis['flesch_kincaid_score']:.2f}\n")
 
             if 'word_details' in self.analysis:
                 txtfile.write("\nWord Details:\n")
