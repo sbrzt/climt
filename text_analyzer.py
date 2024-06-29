@@ -163,8 +163,36 @@ class TextAnalyzer:
 
     def get_word_pos(self, words):
         '''
+        Get the Part of Speech (PoS) tag for each word in the text.
+
+        Input:
+            - words: a list of strings, each representing a word in the text
+
+        Output:
+            - a dictionary of word-PoS tag pairs
         '''
         return dict(nltk.pos_tag(words))
+
+    def __get_wordnet_pos(self, tag):
+        '''
+        Convert NLTK PoS tags into WordNet PoS tags.
+
+        Input:
+            - tag: a string representing a NLTK PoS tag
+
+        Output:
+            - a WordNet PoS tag
+        '''
+        if tag.startswith('J'):
+            return wn.ADJ
+        elif tag.startswith('V'):
+            return wn.VERB
+        elif tag.startswith('N'):
+            return wn.NOUN
+        elif tag.startswith('R'):
+            return wn.ADV
+        else:
+            return None
 
 
     def core_analysis(self):
@@ -182,12 +210,17 @@ class TextAnalyzer:
         }
     
     def word_analysis(self):
+        '''
+        Return a more detailed analysis for each word in the text, including its number of occurrences, frequency, PoS tag and possible senses.
+
+        Output:
+            - a list of dictionaries, each representing a single word analysis
+        '''
         word_details = []
         for word, count in self.__most_common_word_frequencies:
             frequency_percent = (count / self.__word_count) * 100
             pos_tag = self.__word_pos.get(word, 'N/A')
-            
-            synsets = wn.synsets(word, pos=pos_tag)
+            synsets = wn.synsets(word, pos=self.__get_wordnet_pos(pos_tag))
             senses = [synset.definition() for synset in synsets]
             word_details.append({
                 'word': word,
@@ -197,42 +230,18 @@ class TextAnalyzer:
                 'senses': senses
             })
         return word_details
-    '''
-    def __get_wordnet_pos(self, tag):
-        if tag.startswith('J'):
-            return wn.ADJ
-        elif tag.startswith('V'):
-            return wn.VERB
-        elif tag.startswith('N'):
-            return wn.NOUN
-        elif tag.startswith('R'):
-            return wn.ADV
-        else:
-            return None
 
-    def word_analysis(self):
-        word_frequencies = self.__most_common_word_frequencies
-        pos_tags = dict(nltk.pos_tag(self.__prova))
-        word_details = []
-        for word, count in word_freq:
-            frequency_percent = (count / self.__word_count) * 100
-            pos_tag = pos_tags.get(word, 'N/A')
-            wordnet_pos = self.__get_wordnet_pos(pos_tag) or wn.NOUN
-            lemma = lemmatizer.lemmatize(word, pos=wordnet_pos)
-            synsets = wn.synsets(word, pos=wordnet_pos)
-            senses = [synset.definition() for synset in synsets]
-            word_details.append({
-                'word': word,
-                'occurrences': count,
-                'frequency_percent': frequency_percent,
-                'pos_tag': wordnet_pos,
-                'lemma': lemma,
-                'senses': senses
-            })
-        return word_details
-    '''
 
     def analyze(self, focus):
+        '''
+        Construct and return a full analysis, based on the analysis focus.
+
+        Input:
+            - focus: a string representing the focus of the analysis 
+        
+        Output:
+            - a dictionary representing the full analysis
+        '''
         if 'word' in focus:
             self.analysis['word_details'] = self.word_analysis()
         return self.analysis
