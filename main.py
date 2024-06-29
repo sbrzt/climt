@@ -33,7 +33,7 @@ def main():
     parser.add_argument(
         "--focus", 
         nargs='*', 
-        choices=["word"], 
+        choices=["word", "read", "ngram"], 
         default=["word"], 
         help="Focus of the analysis"
     )

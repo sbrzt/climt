@@ -1,7 +1,3 @@
-# Type-Token Ratio (TTR): Ratio of unique words (types) to total words (tokens).
-# Readability scores
-# Common Bigrams: Most frequent pairs of consecutive words.
-# Common Trigrams: Most frequent triplets of consecutive words.
 # Entities: List of named entities (e.g., persons, locations, organizations) and their frequencies.
 # Sentiment Score: Overall sentiment score of the text (e.g., positive, neutral, negative).
 
@@ -39,6 +35,7 @@ class TextAnalyzer:
         self.__word_count_per_sentence = self.get_word_count_per_sentence(self.__word_count, self.__sentence_count)
         self.__most_common_word_frequencies = self.get_most_common_word_frequencies(self.__lemmas)
         self.__word_pos = self.get_word_pos(self.__lemmas)
+        self.__type_token_ratio = self.get_type_token_ratio(self.__words, self.__word_count)
 
         self.analysis = self.core_analysis()
 
@@ -174,6 +171,19 @@ class TextAnalyzer:
         '''
         return dict(nltk.pos_tag(words))
 
+    def get_type_token_ratio(self, words, word_count):
+        '''
+        Get the ratio of unique words (types) to total words (tokens).
+
+        Input:
+            - words: a list of strings, each representing a word in the text
+            - word_count: a integer representing the total number of words in the text
+
+        Output:
+            - a integer representing the type-token ratio
+        '''
+        return len(set(words)) / word_count
+
     def __get_wordnet_pos(self, tag):
         '''
         Convert NLTK PoS tags into WordNet PoS tags.
@@ -195,6 +205,22 @@ class TextAnalyzer:
         else:
             return None
 
+    def __get_most_frequent_ngrams(self, words, n=2, top_k=10):
+        '''
+        Return the most frequent N-grams of a specified length in the text.
+
+        Input:
+            - words: a list of strings, each representing a word
+            - n: a integer, representing the number of adjacent symbols in each sequence (n=2 by default)
+            - top_k: a integer, representing the number of most frequent N-grams to be returned (top_k=10 by default)
+        
+        Output:
+            - a list of tuples, each representing a N-gram-count pair
+        '''
+        ngrams = nltk.ngrams(words, n)
+        ngram_freq = Counter(ngrams)
+        return ngram_freq.most_common(top_k)
+
 
     def core_analysis(self):
         '''
@@ -208,11 +234,12 @@ class TextAnalyzer:
             'word_count': self.__word_count,
             'sentence_count': self.__sentence_count,
             'words_per_sentence': self.__word_count_per_sentence,
+            'type_token_ratio': self.__type_token_ratio
         }
     
     def word_analysis(self):
         '''
-        Return a more detailed analysis for each word in the text, including its number of occurrences, frequency, PoS tag and possible senses.
+        Return a detailed analysis for each word in the text, including its number of occurrences, frequency, PoS tag and possible senses.
 
         Output:
             - a list of dictionaries, each representing a single word analysis
@@ -232,6 +259,35 @@ class TextAnalyzer:
             })
         return word_details
 
+    def readibility_analysis(self):
+        '''
+        Return a detailed analysis for the readibility of the text in terms of scores, each based on a specific metric (e.g. Flesch-Kincaid Grade, Automated Readibility Index, etc.)
+        
+        Output:
+            - a dictionary representing the readibility analysis
+        '''
+        readability_scores = {
+            'flesch_reading_ease': textstat.flesch_reading_ease(self.__text),
+            'smog_index': textstat.smog_index(self.__text),
+            'flesch_kincaid_grade': textstat.flesch_kincaid_grade(self.__text),
+            'coleman_liau_index': textstat.coleman_liau_index(self.__text),
+            'automated_readability_index': textstat.automated_readability_index(self.__text),
+            'dale_chall_readability_score': textstat.dale_chall_readability_score(self.__text),
+            'difficult_words': textstat.difficult_words(self.__text),
+            'linsear_write_formula': textstat.linsear_write_formula(self.__text),
+            'gunning_fog': textstat.gunning_fog(self.__text),
+            'text_standard': textstat.text_standard(self.__text)
+        }
+        return readability_scores
+
+    def ngram_analysis(self):
+        '''
+        Return a detailed analysis for the most frequent N-grams in the text.
+
+        Output:
+            - a dictionary, representing the N-grams analysis.
+        '''
+        return dict(self.__get_most_frequent_ngrams(self.__words))
 
     def analyze(self, focus):
         '''
@@ -244,5 +300,9 @@ class TextAnalyzer:
             - a dictionary representing the full analysis
         '''
         if 'word' in focus:
-            self.analysis['word_details'] = self.word_analysis()
+            self.analysis['word_analysis'] = self.word_analysis()
+        if 'read' in focus:
+            self.analysis['readibility_analysis'] = self.readibility_analysis()
+        if 'ngram' in focus:
+            self.analysis['ngram_analysis'] = self.ngram_analysis()
         return self.analysis
