@@ -16,6 +16,8 @@ import textstat
 #nltk.download('stopwords')
 #nltk.download('averaged_perceptron_tagger')
 #nltk.download('wordnet')
+#nltk.download('maxent_ne_chunker')
+#nltk.download('words')
 
 class TextAnalyzer:
     '''
@@ -221,6 +223,16 @@ class TextAnalyzer:
         ngram_freq = Counter(ngrams)
         return ngram_freq.most_common(top_k)
 
+    def __get_named_entities(self, words):
+        parse_tree = nltk.ne_chunk(nltk.pos_tag(words))
+        named_entities_set = []
+        for t in parse_tree.subtrees():
+            if t.label() == "ORGANIZATION" or t.label() == "PERSON" or t.label() == "GPE":
+
+                named_entities_set.append((t.label(), t.leaves()))
+
+        return named_entities_set
+
 
     def core_analysis(self):
         '''
@@ -289,6 +301,11 @@ class TextAnalyzer:
         '''
         return dict(self.__get_most_frequent_ngrams(self.__words))
 
+    def named_entity_analysis(self):
+        '''     
+        '''
+        return self.__get_named_entities(self.get_words(self.__text))
+
     def analyze(self, focus):
         '''
         Construct and return a full analysis, based on the analysis focus.
@@ -305,4 +322,6 @@ class TextAnalyzer:
             self.analysis['readibility_analysis'] = self.readibility_analysis()
         if 'ngram' in focus:
             self.analysis['ngram_analysis'] = self.ngram_analysis()
+        if 'ner' in focus:
+            self.analysis['ner_analysis'] = self.named_entity_analysis()
         return self.analysis

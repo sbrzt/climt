@@ -17,7 +17,7 @@ class ReportGenerator:
             txtfile.write(f"Word Count: {self.analysis['word_count']}\n")
             txtfile.write(f"Sentence Count: {self.analysis['sentence_count']}\n")
 
-            if 'word_details' in self.analysis:
+            if 'word_analysis' in self.analysis:
                 txtfile.write("\nWord Details:\n")
                 txtfile.write(tabulate([
                     [
