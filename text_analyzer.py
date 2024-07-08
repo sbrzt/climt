@@ -1,4 +1,3 @@
-# Entities: List of named entities (e.g., persons, locations, organizations) and their frequencies.
 # Sentiment Score: Overall sentiment score of the text (e.g., positive, neutral, negative).
 
 
@@ -9,6 +8,7 @@ from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
+from nltk.sentiment import SentimentIntensityAnalyzer
 import textstat
 
 # Ensure required NLTK resources are downloaded
@@ -18,6 +18,7 @@ import textstat
 #nltk.download('wordnet')
 #nltk.download('maxent_ne_chunker')
 #nltk.download('words')
+#nltk.download('vader_lexicon')
 
 class TextAnalyzer:
     '''
@@ -224,14 +225,34 @@ class TextAnalyzer:
         return ngram_freq.most_common(top_k)
 
     def __get_named_entities(self, words):
+        '''
+        Return the list of named entities referenced in the text.
+
+        Input:
+            - words: a list of strings, each representing a wrod
+        
+        Output:
+            - a list of tuples, each representing a named entity and its type
+        '''
         parse_tree = nltk.ne_chunk(nltk.pos_tag(words))
         named_entities_set = []
         for t in parse_tree.subtrees():
             if t.label() == "ORGANIZATION" or t.label() == "PERSON" or t.label() == "GPE":
-
-                named_entities_set.append((t.label(), t.leaves()))
-
+                named_entities_set.append((t.label(), ' '.join(c[0] for c in t)))
         return named_entities_set
+
+    def __get_polarity_scores(self, text):
+        '''
+        Return the polarity scores assigned to the text.
+
+        Input:
+            - text: a string representing the text
+
+        Output:
+            - a dictionary consisting in four score-value pairs (compound, negative, neutral and positive)
+        '''
+        sia = SentimentIntensityAnalyzer()
+        return sia.polarity_scores(text)
 
 
     def core_analysis(self):
@@ -302,9 +323,27 @@ class TextAnalyzer:
         return dict(self.__get_most_frequent_ngrams(self.__words))
 
     def named_entity_analysis(self):
-        '''     
+        '''
+        Return a detailed analysis for the named entities recognition in the text. 
+
+        Output:
+            - a dictionary representing the named entity analysis
+
         '''
         return self.__get_named_entities(self.get_words(self.__text))
+
+    def sentiment_analysis(self):
+        '''
+        Return a detailed analysis for the sentiment polarities for each sentence in the text. 
+
+        Output:
+            - a dictionary representing the sentiment analysis
+        '''
+        sentences_analyzed = []
+        for sentence in self.__sentences:
+            polarity_scores = self.__get_polarity_scores(sentence)
+            sentences_analyzed.append((sentence, polarity_scores))
+        return sentences_analyzed
 
     def analyze(self, focus):
         '''
@@ -324,4 +363,6 @@ class TextAnalyzer:
             self.analysis['ngram_analysis'] = self.ngram_analysis()
         if 'ner' in focus:
             self.analysis['ner_analysis'] = self.named_entity_analysis()
+        if 'sentiment' in focus:
+            self.analysis['sentiment_analysis'] = self.sentiment_analysis()
         return self.analysis
