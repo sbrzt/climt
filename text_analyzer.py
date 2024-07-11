@@ -1,6 +1,3 @@
-# Sentiment Score: Overall sentiment score of the text (e.g., positive, neutral, negative).
-
-
 import nltk
 import string
 from collections import Counter
@@ -22,7 +19,7 @@ import textstat
 
 class TextAnalyzer:
     '''
-    description of class
+    A class designed for text analysis, enabling various quantitative and qualitative linguistic assessments.
     '''
 
     def __init__(self, text):
@@ -342,7 +339,8 @@ class TextAnalyzer:
         sentences_analyzed = []
         for sentence in self.__sentences:
             polarity_scores = self.__get_polarity_scores(sentence)
-            sentences_analyzed.append((sentence, polarity_scores))
+            polarity_scores['sentence'] = sentence
+            sentences_analyzed.append(polarity_scores)
         return sentences_analyzed
 
     def analyze(self, focus):
