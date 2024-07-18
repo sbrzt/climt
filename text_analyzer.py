@@ -259,6 +259,15 @@ class TextAnalyzer:
         Output:
             - a dictionary containing a character count, a word count, a sentence count, and a word per sentence count
         '''
+        ### syllable count
+        ### characters per word
+        ### syllables per word
+        ### paragraph count
+        ### words per paragraph
+        ### sentences per paragraph
+        ### unique word count
+        ### reading time (at 225 words per minute)
+        ### speaking time (at 125 words per minute)
         return {
             'char_count': self.__char_count,
             'word_count': self.__word_count,
@@ -274,6 +283,18 @@ class TextAnalyzer:
         Output:
             - a list of dictionaries, each representing a single word analysis
         '''
+        ### adjectives
+        ### adverbs
+        ### conjunctions
+        ### determiners
+        ### interjections
+        ### nouns
+        ### proper nouns
+        ### prepositions
+        ### pronouns
+        ### qualifiers
+        ### verbs
+        
         word_details = []
         for word, count in self.__most_common_word_frequencies:
             frequency_percent = (count / self.__word_count) * 100
@@ -308,6 +329,11 @@ class TextAnalyzer:
             'gunning_fog': textstat.gunning_fog(self.__text),
             'text_standard': textstat.text_standard(self.__text)
         }
+        ### sentences > 30 syllables
+        ### words > 12 letters
+        ### adverb count < 4%
+        ### passive voice count
+        
         return readability_scores
 
     def ngram_analysis(self):
@@ -336,6 +362,9 @@ class TextAnalyzer:
         Output:
             - a dictionary representing the sentiment analysis
         '''
+        ### reach
+        ### tone 
+        ### personalism
         sentences_analyzed = []
         for sentence in self.__sentences:
             polarity_scores = self.__get_polarity_scores(sentence)

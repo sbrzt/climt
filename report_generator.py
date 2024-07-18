@@ -1,19 +1,29 @@
 import json
 from tabulate import tabulate
 
+
 class ReportGenerator:
     def __init__(self, analysis):
         self.analysis = analysis
+    def save_report(self, filename):
+        pass
 
-    # JSON
-    def save_json(self, filename):
+
+class JSONReportGenerator(ReportGenerator):
+    def __init__(self, analysis):
+        super().__init__(analysis)
+    def save_report(self, filename):
         with open(filename, "w") as jsonfile:
             json.dump(self.analysis, jsonfile, indent=4)
 
-    # TXT
-    def save_txt(self, filename):
+
+class TXTReportGenerator(ReportGenerator):
+    def __init__(self, analysis):
+        super().__init__(analysis)
+    def save_report(self, filename):
         with open(filename, "w") as txtfile:
             txtfile.write("\nGeneral Information:\n")
+            #txtfile.write(''.join(map(lambda item: f"- {item[0].replace('_', ' ').title()}: {item[1]}\n", self.analysis['core_analysis'].items())))
             txtfile.write(f"- Character Count: {self.analysis['char_count']}\n")
             txtfile.write(f"- Word Count: {self.analysis['word_count']}\n")
             txtfile.write(f"- Sentence Count: {self.analysis['sentence_count']}\n")

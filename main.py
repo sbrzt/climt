@@ -1,7 +1,7 @@
 import argparse
 import pprint
 from text_analyzer import TextAnalyzer
-from report_generator import ReportGenerator
+from report_generator import JSONReportGenerator, TXTReportGenerator
 
 def main():
     parser = argparse.ArgumentParser(
@@ -57,22 +57,22 @@ def main():
     analyzer = TextAnalyzer(text)
     analysis = analyzer.analyze(args.focus)
 
-    report_generator = ReportGenerator(analysis)
-
     if args.output == "stream":
         pprint.pprint(analysis)
     elif args.output == "json":
         if not args.outfile:
             print("Filename required for JSON output")
         else:
-            report_generator.save_json(args.outfile)
+            report_generator = JSONReportGenerator(analysis)
     elif args.output == "txt":
         if not args.outfile:
             print("Filename required for TXT output")
         else:
-            report_generator.save_txt(args.outfile)
+            report_generator = TXTReportGenerator(analysis)
     else:
         print("Invalid choice")
+    
+    report_generator.save_report(args.outfile)
 
 if __name__ == "__main__":
     main()
