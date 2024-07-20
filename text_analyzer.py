@@ -28,6 +28,7 @@ class TextAnalyzer:
         self.__text_preprocessed = self.__preprocess_text(self.__text)
         self.__text_lemmatized = self.__preprocess_text(self.__text, remove_stopwords=True, lemmatization=True)
         self.__words = self.get_words(self.__text_preprocessed)
+        self.__char_per_word = self.get_char_per_word(self.__words)
         self.__lemmas = self.get_words(self.__text_lemmatized)
         self.__word_count = self.get_word_count(self.__words)
         self.__sentences = self.get_sentences(self.__text)
@@ -51,6 +52,23 @@ class TextAnalyzer:
             - a integer representing the total number of characters
         '''
         return len(text)
+
+
+    def get_char_per_word(self, words: list) -> int:
+        '''
+        Get the average number of characters per word in the text.
+
+        Input:
+            - words: list of strings, each representing a word
+
+        Output:
+            - a integer representing the average number of characters per word in the text
+        '''
+        total_chars = sum(len(word) for word in words)
+        total_words = len(words)
+        average_chars_per_word = total_chars / total_words if total_words > 0 else 0
+        return average_chars_per_word
+
 
     def __preprocess_text(self, text: str, remove_stopwords=False, stemming=False, lemmatization=False) -> str:
         '''
@@ -98,6 +116,7 @@ class TextAnalyzer:
         '''
         return nltk.word_tokenize(text)
 
+
     def get_word_count(self, words: list) -> int:
         '''
         Get the total number of words in the stext.
@@ -109,6 +128,7 @@ class TextAnalyzer:
             - a integer representing the total number of words
         '''
         return len(words)
+
 
     def get_sentences(self, text: str) -> list:
         '''
@@ -122,6 +142,7 @@ class TextAnalyzer:
         '''
         return nltk.sent_tokenize(text)
 
+
     def get_sentence_count(self, sentences: list) -> int:
         '''
         Get the total number of sentences in the text.
@@ -133,6 +154,7 @@ class TextAnalyzer:
             - a integer representing the total number of sentences
         '''
         return len(sentences)
+
 
     def get_word_count_per_sentence(self, word_count: int, sentence_count: int) -> float:
         '''
@@ -147,6 +169,7 @@ class TextAnalyzer:
         '''
         return word_count / sentence_count
 
+
     def get_most_common_word_frequencies(self, text):
         '''
         Return a list of word-frequency pairs of the N most common words in the text.
@@ -158,6 +181,7 @@ class TextAnalyzer:
             - a list of tuples, each representing a word-frequency pair
         '''
         return Counter(text).most_common(50)
+
 
     def get_word_pos(self, words):
         '''
@@ -171,6 +195,7 @@ class TextAnalyzer:
         '''
         return dict(nltk.pos_tag(words))
 
+
     def get_type_token_ratio(self, words, word_count):
         '''
         Get the ratio of unique words (types) to total words (tokens).
@@ -183,6 +208,7 @@ class TextAnalyzer:
             - a integer representing the type-token ratio
         '''
         return len(set(words)) / word_count
+
 
     def __get_wordnet_pos(self, tag):
         '''
@@ -205,6 +231,7 @@ class TextAnalyzer:
         else:
             return None
 
+
     def __get_most_frequent_ngrams(self, words, n=2, top_k=10):
         '''
         Return the most frequent N-grams of a specified length in the text.
@@ -220,6 +247,7 @@ class TextAnalyzer:
         ngrams = nltk.ngrams(words, n)
         ngram_freq = Counter(ngrams)
         return ngram_freq.most_common(top_k)
+
 
     def __get_named_entities(self, words):
         '''
@@ -237,6 +265,7 @@ class TextAnalyzer:
             if t.label() == "ORGANIZATION" or t.label() == "PERSON" or t.label() == "GPE":
                 named_entities_set.append((t.label(), ' '.join(c[0] for c in t)))
         return named_entities_set
+
 
     def __get_polarity_scores(self, text):
         '''
@@ -260,7 +289,6 @@ class TextAnalyzer:
             - a dictionary containing a character count, a word count, a sentence count, and a word per sentence count
         '''
         ### syllable count
-        ### characters per word
         ### syllables per word
         ### paragraph count
         ### words per paragraph
@@ -270,6 +298,7 @@ class TextAnalyzer:
         ### speaking time (at 125 words per minute)
         return {
             'char_count': self.__char_count,
+            'char_per_word': self.__char_per_word,
             'word_count': self.__word_count,
             'sentence_count': self.__sentence_count,
             'words_per_sentence': self.__word_count_per_sentence,

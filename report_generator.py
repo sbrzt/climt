@@ -25,6 +25,7 @@ class TXTReportGenerator(ReportGenerator):
             txtfile.write("\nGeneral Information:\n")
             #txtfile.write(''.join(map(lambda item: f"- {item[0].replace('_', ' ').title()}: {item[1]}\n", self.analysis['core_analysis'].items())))
             txtfile.write(f"- Character Count: {self.analysis['char_count']}\n")
+            txtfile.write(f"- Character per Word: {self.analysis['char_per_word']}\n")
             txtfile.write(f"- Word Count: {self.analysis['word_count']}\n")
             txtfile.write(f"- Sentence Count: {self.analysis['sentence_count']}\n")
             txtfile.write(f"- Words per Sentence: {self.analysis['words_per_sentence']}\n")
