@@ -6,6 +6,8 @@ from nltk.corpus import wordnet as wn
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
 from nltk.sentiment import SentimentIntensityAnalyzer
+from nltk.tokenize import BlanklineTokenizer
+from nltk.tokenize import SyllableTokenizer
 import textstat
 
 # Ensure required NLTK resources are downloaded
@@ -25,20 +27,27 @@ class TextAnalyzer:
     def __init__(self, text):
         self.__text = text
         self.__char_count = self.get_char_count(self.__text)
+        self.__syllable_count = self.get_syllable_count(self.__text)
         self.__text_preprocessed = self.__preprocess_text(self.__text)
         self.__text_lemmatized = self.__preprocess_text(self.__text, remove_stopwords=True, lemmatization=True)
         self.__words = self.get_words(self.__text_preprocessed)
+        self.__word_count = self.get_word_count(self.__words)
+        self.__syllable_count_per_word = self.get_syllable_count_per_word(self.__syllable_count, self.__word_count)
+        self.__paragraphs = self.get_paragraphs(self.__text)
+        self.__paragraph_count = self.get_paragraph_count(self.__paragraphs)
+        self.__word_count_per_paragraph = self.get_word_count_per_paragraph(self.__word_count, self.__paragraph_count)
         self.__char_per_word = self.get_char_per_word(self.__words)
         self.__lemmas = self.get_words(self.__text_lemmatized)
-        self.__word_count = self.get_word_count(self.__words)
         self.__sentences = self.get_sentences(self.__text)
         self.__sentence_count = self.get_sentence_count(self.__sentences)
+        self.__sentence_count_per_paragraph = self.get_sentence_count_per_paragraph(self.__sentence_count, self.__paragraph_count)
         self.__word_count_per_sentence = self.get_word_count_per_sentence(self.__word_count, self.__sentence_count)
         self.__most_common_word_frequencies = self.get_most_common_word_frequencies(self.__lemmas)
         self.__word_pos = self.get_word_pos(self.__lemmas)
-        self.__type_token_ratio = self.get_type_token_ratio(self.__words, self.__word_count)
-
-        self.analysis = self.core_analysis()
+        self.__unique_word_count = self.get_unique_word_count(self.__words)
+        self.__type_token_ratio = self.get_type_token_ratio(self.__unique_word_count, self.__word_count)
+        
+        self.analysis = self.text_statistics()
 
     
     def get_char_count(self, text: str) -> int:
@@ -68,6 +77,35 @@ class TextAnalyzer:
         total_words = len(words)
         average_chars_per_word = total_chars / total_words if total_words > 0 else 0
         return average_chars_per_word
+
+    
+    def get_syllable_count(self, text: str) -> int:
+        '''
+        Get the total number of syllables in the text.
+
+        Input:
+            - text: a string representing the text
+
+        Output:
+            - a integer representing the total number of syllables
+        '''
+        SSP = SyllableTokenizer()
+        syllables = SSP.tokenize(text)
+        return len(syllables)
+
+    
+    def get_syllable_count_per_word(self, syllable_count: int, word_count: int) -> float:
+        '''
+        Get the average number of syllables per word in the text.
+
+        Input:
+            - syllable_count: a integer representing the total number of syllables in the text
+            - word_count: a integer representing the total number of words in the text
+
+        Output:
+            - a float representing the average number of syllables per word
+        '''
+        return syllable_count / word_count
 
 
     def __preprocess_text(self, text: str, remove_stopwords=False, stemming=False, lemmatization=False) -> str:
@@ -129,6 +167,33 @@ class TextAnalyzer:
         '''
         return len(words)
 
+    
+    def get_paragraphs(self, text: str) -> list:
+        '''
+        Get the paragraphs contained in the text.
+
+        Input:
+            - text: a string representing the text
+        
+        Output:
+            - a list of strings, each representing a single paragraph
+        '''
+        paras = BlanklineTokenizer().tokenize(text)
+        return paras
+
+    
+    def get_paragraph_count(self, paragraphs: list) -> int:
+        '''
+        Get the number of paragraphs contained in the text.
+
+        Input:
+            - paragraphs: a list of strings, each representing a paragraph
+        
+        Output:
+            - a integer, representing the total number of paragraphs
+        '''
+        return len(paragraphs)
+
 
     def get_sentences(self, text: str) -> list:
         '''
@@ -169,8 +234,36 @@ class TextAnalyzer:
         '''
         return word_count / sentence_count
 
+    
+    def get_word_count_per_paragraph(self, word_count: int, paragraph_count: int) -> float:
+        '''
+        Get the average number of words per paragraph in the text.
 
-    def get_most_common_word_frequencies(self, text):
+        Input:
+            - word_count: a integer representing the total number of words in the text
+            - paragraph_count: a integer representing the total number of paragraphs in the text
+
+        Output:
+            - a float representing the average number of words per paragraph
+        '''
+        return word_count / paragraph_count
+
+    
+    def get_sentence_count_per_paragraph(self, sentence_count: int, paragraph_count: int) -> float:
+        '''
+        Get the average number of sentences per paragraph in the text.
+
+        Input:
+            - sentence_count: a integer representing the total number of sentences in the text
+            - paragraph_count: a integer representing the total number of paragraphs in the text
+
+        Output:
+            - a float representing the average number of sentences per paragraph
+        '''
+        return sentence_count / paragraph_count
+
+
+    def get_most_common_word_frequencies(self, text: str) -> list:
         '''
         Return a list of word-frequency pairs of the N most common words in the text.
 
@@ -183,7 +276,7 @@ class TextAnalyzer:
         return Counter(text).most_common(50)
 
 
-    def get_word_pos(self, words):
+    def get_word_pos(self, words: list) -> dict:
         '''
         Get the Part of Speech (PoS) tag for each word in the text.
 
@@ -196,18 +289,31 @@ class TextAnalyzer:
         return dict(nltk.pos_tag(words))
 
 
-    def get_type_token_ratio(self, words, word_count):
+    def get_unique_word_count(self, words: list) -> int:
+        '''
+        Get the total number of unique words in the stext.
+
+        Input:
+            - words: list of strings, each representing a word
+        
+        Output:
+            - a integer representing the total number of unique words
+        '''
+        return len(set(words))
+
+
+    def get_type_token_ratio(self, unique_word_count, word_count):
         '''
         Get the ratio of unique words (types) to total words (tokens).
 
         Input:
-            - words: a list of strings, each representing a word in the text
+            - unique_word_count: a integer representing the number of unique words in the text
             - word_count: a integer representing the total number of words in the text
 
         Output:
             - a integer representing the type-token ratio
         '''
-        return len(set(words)) / word_count
+        return unique_word_count / word_count
 
 
     def __get_wordnet_pos(self, tag):
@@ -281,28 +387,28 @@ class TextAnalyzer:
         return sia.polarity_scores(text)
 
 
-    def core_analysis(self):
+    def text_statistics(self):
         '''
         Return a basic quantitative analysis of the text, consisting in a character count, a word count, a sentence count, and a word per sentence count.
 
         Output:
             - a dictionary containing a character count, a word count, a sentence count, and a word per sentence count
         '''
-        ### syllable count
-        ### syllables per word
-        ### paragraph count
-        ### words per paragraph
-        ### sentences per paragraph
-        ### unique word count
-        ### reading time (at 225 words per minute)
-        ### speaking time (at 125 words per minute)
         return {
-            'char_count': self.__char_count,
-            'char_per_word': self.__char_per_word,
-            'word_count': self.__word_count,
-            'sentence_count': self.__sentence_count,
-            'words_per_sentence': self.__word_count_per_sentence,
-            'type_token_ratio': self.__type_token_ratio
+            'text_statistics': {
+                'char_count': self.__char_count,
+                'char_per_word': self.__char_per_word,
+                'syllable_count': self.__syllable_count,
+                'syllables_per_word': self.__syllable_count_per_word,
+                'word_count': self.__word_count,
+                'paragraph_count': self.__paragraph_count,
+                'words_per_paragraph': self.__word_count_per_paragraph,
+                'sentences_per_paragraph': self.__sentence_count_per_paragraph,
+                'sentence_count': self.__sentence_count,
+                'words_per_sentence': self.__word_count_per_sentence,
+                'unique_word_count': self.__unique_word_count,
+                'type_token_ratio': self.__type_token_ratio
+            }
         }
     
     def word_analysis(self):
@@ -362,6 +468,8 @@ class TextAnalyzer:
         ### words > 12 letters
         ### adverb count < 4%
         ### passive voice count
+        ### reading time (at 225 words per minute)
+        ### speaking time (at 125 words per minute)
         
         return readability_scores
 
