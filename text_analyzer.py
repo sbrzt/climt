@@ -276,7 +276,7 @@ class TextAnalyzer:
         return Counter(text).most_common(50)
 
 
-    def get_word_pos(self, words: list) -> dict:
+    def get_word_pos(self, words: list) -> list:
         '''
         Get the Part of Speech (PoS) tag for each word in the text.
 
@@ -284,9 +284,9 @@ class TextAnalyzer:
             - words: a list of strings, each representing a word in the text
 
         Output:
-            - a dictionary of word-PoS tag pairs
+            - a list of word-PoS tag pairs
         '''
-        return dict(nltk.pos_tag(words))
+        return nltk.pos_tag(words)
 
 
     def get_unique_word_count(self, words: list) -> int:
@@ -411,29 +411,39 @@ class TextAnalyzer:
             }
         }
     
-    def word_analysis(self):
+
+    def text_composition(self):
         '''
         Return a detailed analysis for each word in the text, including its number of occurrences, frequency, PoS tag and possible senses.
 
         Output:
             - a list of dictionaries, each representing a single word analysis
         '''
-        ### adjectives
-        ### adverbs
-        ### conjunctions
-        ### determiners
-        ### interjections
-        ### nouns
-        ### proper nouns
-        ### prepositions
-        ### pronouns
-        ### qualifiers
-        ### verbs
-        
-        word_details = []
+        counts = Counter(tag for word, tag in self.__word_pos)
+        adjective_count = counts['JJ']
+        adverb_count = counts['RB'] + counts['RBR'] + counts['RBS'] + counts['WRB']
+        conjunction_count = counts['CC'] + counts['IN']
+        determiner_count = counts['DT']
+        noun_count = counts['NN'] + counts['NNS']
+        proper_noun_count = counts['NNP'] + counts['NNPS']
+        preposition_count = counts['IN'] + counts['PP']
+        pronoun_count = counts['PRP'] + counts['PRP$'] + counts['WP'] + counts['WP$']
+        verb_count = counts['VBD'] + counts['VBG'] + counts['VBN'] + counts['VBP'] + counts['VBZ'] + counts['VP']
+        text_composition_analysis = {
+            'adjectives': adjective_count,
+            'adverbs': adverb_count,
+            'conjunctions': conjunction_count,
+            'determiners': determiner_count,
+            'nouns': noun_count,
+            'proper_nouns': proper_noun_count,
+            'prepositions': preposition_count,
+            'pronouns': pronoun_count,
+            'verbs': verb_count
+        }
+        '''word_details = []
         for word, count in self.__most_common_word_frequencies:
             frequency_percent = (count / self.__word_count) * 100
-            pos_tag = self.__word_pos.get(word, 'N/A')
+            pos_tag = dict(self.__word_pos).get(word, 'N/A')
             synsets = wn.synsets(word, pos=self.__get_wordnet_pos(pos_tag))
             senses = [synset.definition() for synset in synsets]
             word_details.append({
@@ -443,7 +453,9 @@ class TextAnalyzer:
                 'pos_tag': pos_tag,
                 'senses': senses
             })
-        return word_details
+        return word_details'''
+        return text_composition_analysis
+
 
     def readibility_analysis(self):
         '''
@@ -520,7 +532,7 @@ class TextAnalyzer:
             - a dictionary representing the full analysis
         '''
         if 'word' in focus:
-            self.analysis['word_analysis'] = self.word_analysis()
+            self.analysis['text_composition'] = self.text_composition()
         if 'read' in focus:
             self.analysis['readibility_analysis'] = self.readibility_analysis()
         if 'ngram' in focus:

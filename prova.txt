@@ -15,16 +15,15 @@ TEXT STATISTICS:
 
 ---
 
-Readibility Details:
-- Flesch Reading Ease: 64.85
-- Smog Index: 11.5
-- Flesch Kincaid Grade: 10.0
-- Coleman Liau Index: 8.88
-- Automated Readability Index: 11.9
-- Dale Chall Readability Score: 5.98
-- Difficult Words: 4521
-- Linsear Write Formula: 10.8
-- Gunning Fog: 10.42
-- Text Standard: 11th and 12th grade
+TEXT COMPOSITION:
+- Adjectives: 7055
+- Adverbs: 2849
+- Conjunctions: 741
+- Determiners: 157
+- Nouns: 15390
+- Proper Nouns: 11
+- Prepositions: 721
+- Pronouns: 69
+- Verbs: 7328
 
 ---

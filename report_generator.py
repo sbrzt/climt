@@ -26,9 +26,11 @@ class TXTReportGenerator(ReportGenerator):
             txtfile.write(''.join(map(lambda item: f"- {item[0].replace('_', ' ').title()}: {item[1]}\n", self.analysis['text_statistics'].items())))
             txtfile.write("\n---\n")
 
-            if 'word_analysis' in self.analysis:
-                txtfile.write("\nWord Details:\n")
-                txtfile.write(tabulate([
+            if 'text_composition' in self.analysis:
+                txtfile.write("\nTEXT COMPOSITION\n")
+                txtfile.write(''.join(map(lambda item: f"- {item[0].replace('_', ' ').title()}: {item[1]}\n", self.analysis['text_composition'].items())))
+                txtfile.write("\n---\n")
+                '''txtfile.write(tabulate([
                     [
                         detail['word'],
                         detail['occurrences'],
@@ -38,10 +40,10 @@ class TXTReportGenerator(ReportGenerator):
                         ", ".join(detail['senses'])
                     ] for detail in self.analysis['word_details']
                 ], headers=["Word", "Occurrences", "Frequency (%)", "POS Tag", "Lemma", "Senses"]))
-                txtfile.write("\n---\n")
+                txtfile.write("\n---\n")'''
 
             if 'readibility_analysis' in self.analysis:
-                txtfile.write("\nReadibility Details:\n")
+                txtfile.write("\nReadibility Details\n")
                 txtfile.write(''.join(map(lambda item: f"- {item[0].replace('_', ' ').title()}: {item[1]}\n", self.analysis['readibility_analysis'].items())))
                 txtfile.write("\n---\n")
 
