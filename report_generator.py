@@ -43,22 +43,22 @@ class TXTReportGenerator(ReportGenerator):
                 txtfile.write("\n---\n")'''
 
             if 'readibility_analysis' in self.analysis:
-                txtfile.write("\nReadibility Details\n")
+                txtfile.write("\nREADIBILITY\n")
                 txtfile.write(''.join(map(lambda item: f"- {item[0].replace('_', ' ').title()}: {item[1]}\n", self.analysis['readibility_analysis'].items())))
                 txtfile.write("\n---\n")
 
             if 'ngram_analysis' in self.analysis:
-                txtfile.write("\nN-grams:\n")
+                txtfile.write("\nN-GRAMS\n")
                 txtfile.write(*map(lambda item: f"- {item[0]}: {item[1]}\n", self.analysis['ngram_analysis'].items()))
                 txtfile.write("\n---\n")
 
             if 'ner_analysis' in self.analysis:
-                txtfile.write("\nNamed entities:\n")
+                txtfile.write("\nNAMED ENTITIES\n")
                 txtfile.write(*map(lambda item: f"- {item[1]} ({item[0]})\n", self.analysis['ner_analysis']))
                 txtfile.write("\n---\n")
             
             if 'sentiment_analysis' in self.analysis:
-                txtfile.write("\nSentiment:\n")
+                txtfile.write("\SENTIMENT ANALYSIS\n")
                 txtfile.write(''.join(map(lambda item: f"\n{item['sentence']}\n    - Negative: {item['neg']}\n    - Neutral: {item['neu']}\n    - Positive: {item['pos']}\n    - Compound: {item['compound']}\n", self.analysis['sentiment_analysis'])))
                 txtfile.write("\n---\n")
 

@@ -439,7 +439,7 @@ class TextAnalyzer:
             'prepositions': preposition_count,
             'pronouns': pronoun_count,
             'verbs': verb_count
-        }
+        }        
         '''word_details = []
         for word, count in self.__most_common_word_frequencies:
             frequency_percent = (count / self.__word_count) * 100
@@ -474,15 +474,14 @@ class TextAnalyzer:
             'difficult_words': textstat.difficult_words(self.__text),
             'linsear_write_formula': textstat.linsear_write_formula(self.__text),
             'gunning_fog': textstat.gunning_fog(self.__text),
-            'text_standard': textstat.text_standard(self.__text)
+            'text_standard': textstat.text_standard(self.__text),
+            'reading_time': f'{self.__word_count / 225} min.',
+            'speaking_time': f'{self.__word_count / 125} min.'
         }
         ### sentences > 30 syllables
         ### words > 12 letters
         ### adverb count < 4%
         ### passive voice count
-        ### reading time (at 225 words per minute)
-        ### speaking time (at 125 words per minute)
-        
         return readability_scores
 
     def ngram_analysis(self):
@@ -511,7 +510,6 @@ class TextAnalyzer:
         Output:
             - a dictionary representing the sentiment analysis
         '''
-        ### reach
         ### tone 
         ### personalism
         sentences_analyzed = []
