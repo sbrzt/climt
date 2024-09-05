@@ -58,10 +58,12 @@ class TXTReportGenerator(ReportGenerator):
                 txtfile.write("\n---\n")
             
             if 'sentiment_analysis' in self.analysis:
-                txtfile.write("\SENTIMENT ANALYSIS\n")
-                txtfile.write(''.join(map(lambda item: f"\n{item['sentence']}\n    - Negative: {item['neg']}\n    - Neutral: {item['neu']}\n    - Positive: {item['pos']}\n    - Compound: {item['compound']}\n", self.analysis['sentiment_analysis'])))
+                txtfile.write("\nSENTIMENT ANALYSIS\n")
+                txtfile.write(f"\n- Negative: {self.analysis['sentiment_analysis']['neg']}\n- Neutral: {self.analysis['sentiment_analysis']['neu']}\n- Positive: {self.analysis['sentiment_analysis']['pos']}\n- Compound: {self.analysis['sentiment_analysis']['compound']}\n")
+                #txtfile.write(''.join(map(lambda item: f"\n{item['sentence']}\n    - Negative: {item['neg']}\n    - Neutral: {item['neu']}\n    - Positive: {item['pos']}\n    - Compound: {item['compound']}\n", self.analysis['sentiment_analysis'])))
                 txtfile.write("\n---\n")
 
+    # Markdown
     # JSON-LD
     # TURTLE
     # HTML-RDFa

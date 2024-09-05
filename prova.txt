@@ -1,29 +1,24 @@
 
 TEXT STATISTICS:
-- Char Count: 441034
-- Char Per Word: 4.459164316841836
+- Character Count: 441034
+- Character Per Word: 4.960510184570741
 - Syllable Count: 179062
-- Syllables Per Word: 2.2950781850807487
-- Word Count: 78020
+- Syllables Per Word: 2.013991834347479
+- Word Count: 88909
 - Paragraph Count: 785
-- Words Per Paragraph: 99.38853503184713
+- Words Per Paragraph: 113.25987261146497
 - Sentences Per Paragraph: 4.369426751592357
 - Sentence Count: 3430
-- Words Per Sentence: 22.746355685131196
-- Unique Word Count: 7515
-- Type Token Ratio: 0.09632145603691361
+- Words Per Sentence: 25.920991253644313
+- Unique Word Count: 7975
+- Type Token Ratio: 0.08969845572439236
 
 ---
+\SENTIMENT ANALYSIS
 
-TEXT COMPOSITION:
-- Adjectives: 7055
-- Adverbs: 2849
-- Conjunctions: 741
-- Determiners: 157
-- Nouns: 15390
-- Proper Nouns: 11
-- Prepositions: 721
-- Pronouns: 69
-- Verbs: 7328
+- Negative: 0.194
+- Neutral: 0.571
+- Positive: 0.235
+- Compound: 1.0
 
 ---

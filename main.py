@@ -3,6 +3,7 @@ import pprint
 from text_analyzer import TextAnalyzer
 from report_generator import JSONReportGenerator, TXTReportGenerator
 
+
 def main():
     parser = argparse.ArgumentParser(
         description="Analyze a text and generate reports in various formats."
@@ -34,13 +35,14 @@ def main():
         "--focus", 
         nargs='*', 
         choices=[
+            "text",
             "word", 
             "read", 
             "ngram", 
             "ner",
             "sentiment",
         ], 
-        default=["word"], 
+        default=["text"], 
         help="Focus of the analysis"
     )
 
@@ -72,7 +74,7 @@ def main():
     else:
         print("Invalid choice")
     
-    report_generator.save_report(args.outfile)
+    report_generator.save_report(f"{args.outfile}.{args.output}")
 
 if __name__ == "__main__":
     main()
