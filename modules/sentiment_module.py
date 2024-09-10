@@ -7,7 +7,6 @@ class SentimentModule(AnalysisModule):
     def __init__(self, analyzer):
         super().__init__(analyzer)
 
-    
     def get_polarity_scores(self, sentiment_intensity_analyzer, text):
         '''
         '''
