@@ -2,9 +2,19 @@ from rdflib import Graph, URIRef, Literal, Namespace, BNode
 from rdflib.namespace import RDF, RDFS, XSD
 
 # Namespaces
-LEXINFO = Namespace("http://www.lexinfo.net/ontology/2.0/lexinfo#")
-ONTOLEX = Namespace("http://www.w3.org/ns/lemon/ontolex#")
-EX = Namespace("http://example.org/")
+#LEXINFO = Namespace("http://www.lexinfo.net/ontology/2.0/lexinfo#")
+#ONTOLEX = Namespace("http://www.w3.org/ns/lemon/ontolex#")
+#EX = Namespace("http://example.org/")
+
+# report/document ->
+# text -> 
+# character -> 
+# syllable ->
+# word -> 
+# sentence -> doco:Sentence
+# paragraph -> doco:Paragraph
+# 
+
 
 g = Graph()
 g.bind("ontolex", ONTOLEX)
