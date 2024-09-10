@@ -1,7 +1,9 @@
 import nltk
 import string
 import warnings
+from collections import Counter
 from modules.composition_module import CompositionModule
+from modules.word_module import WordModule
 from modules.readability_module import ReadabilityModule
 from modules.sentiment_module import SentimentModule
 from nltk.corpus import stopwords
@@ -29,7 +31,9 @@ class TextAnalyzer():
 
     def __init__(self, text):
         self.text = text
+        self.words = self.tokenize_text()
         self.preprocessed_text = self.preprocess_text(remove_stopwords=True, lemmatization=True)
+        self.preprocessed_words = self.tokenize_preprocessed_text()
         self.analysis = self.text_statistics()
 
     
@@ -105,22 +109,26 @@ class TextAnalyzer():
         return text
 
 
+    def tokenize_text(self):
+        words = nltk.word_tokenize(self.get_text())
+        return words
+
+
     def get_words(self) -> list:
         '''
-        Get the words contained in the text.
-        Output:
-            - a list of strings, each representing a single word
         '''
-        return nltk.word_tokenize(self.get_text())
+        return self.words
+
+
+    def tokenize_preprocessed_text(self):
+        preprocessed_text = nltk.word_tokenize(self.preprocessed_text)
+        return preprocessed_text
 
 
     def get_preprocessed_words(self) -> list:
         '''
-        Get the words contained in the preprocessed text.
-        Output:
-            - a list of strings, each representing a single word
         '''
-        return nltk.word_tokenize(self.preprocessed_text)
+        return self.preprocessed_words
 
 
     def get_word_count(self) -> int:
@@ -214,6 +222,28 @@ class TextAnalyzer():
         '''
         return nltk.pos_tag(self.get_words())
 
+    
+    def get_wordnet_pos(self, tag):
+        '''
+        Convert NLTK PoS tags into WordNet PoS tags.
+
+        Input:
+            - tag: a string representing a NLTK PoS tag
+
+        Output:
+            - a WordNet PoS tag
+        '''
+        if tag.startswith('J'):
+            return wn.ADJ
+        elif tag.startswith('V'):
+            return wn.VERB
+        elif tag.startswith('N'):
+            return wn.NOUN
+        elif tag.startswith('R'):
+            return wn.ADV
+        else:
+            return None
+
 
     def get_unique_word_count(self) -> int:
         '''
@@ -240,7 +270,7 @@ class TextAnalyzer():
         Output:
             - a dictionary
         '''
-        return {
+        statistics_analysis = {
             'text_statistics': {
                 'character_count': self.get_character_count(),
                 'character_per_word': self.get_character_per_word(),
@@ -256,6 +286,7 @@ class TextAnalyzer():
                 'type_token_ratio': self.get_type_token_ratio()
             }
         }
+        return statistics_analysis
 
 
     def analyze(self, focus):
@@ -271,6 +302,9 @@ class TextAnalyzer():
         if 'text' in focus:
             composition_module = CompositionModule(self)
             self.analysis['text_composition'] = composition_module.analyze()
+        if 'word' in focus:
+            word_module = WordModule(self)
+            self.analysis['word_analysis'] = word_module.analyze()
         if 'read' in focus:
             readability_module = ReadabilityModule(self)
             self.analysis['readability_analysis'] = readability_module.analyze()
