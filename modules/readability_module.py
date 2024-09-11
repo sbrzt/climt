@@ -3,23 +3,51 @@ import textstat
 
 
 class ReadabilityModule(AnalysisModule):
+    """
+    A module for calculating various readability scores for a given text. The module uses 
+    multiple readability formulas to provide insights into the text's complexity and estimated 
+    reading and speaking times.
+
+    Inherits:
+        AnalysisModule: The base class for all analysis modules.
+
+    Attributes:
+        analyzer (TextAnalyzer): An instance of the TextAnalyzer class that provides access 
+                                 to the text data and related analysis methods.
+    """
 
     def __init__(self, analyzer):
+        """
+        Initializes the ReadabilityModule with a reference to the analyzer.
+
+        Args:
+            analyzer (TextAnalyzer): The text analyzer instance containing the text and 
+                                     methods for analysis.
+        """
         super().__init__(analyzer)
 
     def analyze(self):
-        '''
-        Return a detailed analysis for the readibility of the text in terms of scores, each based on a specific metric (e.g. Flesch-Kincaid Grade, Automated Readibility Index, etc.)
-        
-        Output:
-            - a dictionary representing the readibility analysis
+        """
+        Performs readability analysis on the text using multiple readability metrics.
 
-        FW:
-        - sentences > 30 syllables
-        - words > 12 letters
-        - adverb count < 4%
-        - passive voice count
-        '''
+        The analysis includes:
+        - Flesch Reading Ease
+        - SMOG Index
+        - Flesch-Kincaid Grade Level
+        - Coleman-Liau Index
+        - Automated Readability Index
+        - Dale-Chall Readability Score
+        - Difficult Words Count
+        - Linsear Write Formula
+        - Gunning Fog Index
+        - Text Standard (estimated grade level)
+        - Estimated Reading Time
+        - Estimated Speaking Time
+
+        Returns:
+            dict: A dictionary containing the calculated readability scores and estimated times 
+                  for reading and speaking the text.
+        """
         text = self.analyzer.get_text()
         word_count = self.analyzer.get_word_count()
         readability_scores = {
