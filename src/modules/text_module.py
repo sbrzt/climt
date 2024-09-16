@@ -131,7 +131,9 @@ class TextModule(AnalysisModule):
             list: A list of words in the text.
         """
         text = self.get_text()
-        tokens = [word for sentence in self.get_sentences() for word in nltk.word_tokenize(text) if word.isalpha()]
+        sentences = self.get_sentences()
+        #[{'id': i, 'content': word} for i, word in enumerate(sentence, 1)]
+        tokens = [word for sentence in sentences for word in nltk.word_tokenize(sentence['content']) if word.isalpha()]
         return tokens
 
 
@@ -220,8 +222,9 @@ class TextModule(AnalysisModule):
             list: A list of sentences.
         """
         text = self.get_text()
-        sentences = nltk.sent_tokenize(text)
-        return sentences
+        sentence_list = nltk.sent_tokenize(text)
+        sentence_dict_list = [{'id': i, 'content': sentence} for i, sentence in enumerate(sentence_list, 1)]
+        return sentence_dict_list
 
 
     def get_sentence_count(self) -> int:

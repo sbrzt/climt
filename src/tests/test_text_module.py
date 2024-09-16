@@ -30,7 +30,7 @@ class TestTextModule(unittest.TestCase):
         assert text_module.get_syllable_count_per_word() == 1.95
 
     def test_get_sentences(self):
-        assert text_module.get_sentences() == ['Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of the darkness.']
+        assert text_module.get_sentences() == [{"id": 1, "content": "Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of the darkness."}]
 
     def test_get_sentence_count(self):
         assert text_module.get_sentence_count() == 1
