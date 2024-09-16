@@ -25,6 +25,48 @@ class CompositionModule(AnalysisModule):
         """
         super().__init__(analyzer)
 
+
+    def get_most_common_word_frequencies(self) -> list:
+        """
+        Returns the 10 most common words in the preprocessed text along with their frequencies.
+
+        Returns:
+            list: A list of tuples where each tuple contains a word and its frequency.
+        """
+        return Counter(self.get_preprocessed_words()).most_common(10)
+
+
+    def get_word_pos(self) -> list:
+        """
+        Performs part-of-speech (POS) tagging on the tokenized words.
+
+        Returns:
+            list: A list of tuples where each tuple contains a word and its POS tag.
+        """
+        return nltk.pos_tag(self.get_words())
+
+    
+    def get_wordnet_pos(self, tag) -> str:
+        """
+        Maps a POS tag to the appropriate WordNet POS tag.
+
+        Args:
+            tag (str): The POS tag to map.
+
+        Returns:
+            str: The corresponding WordNet POS tag.
+        """
+        if tag.startswith('J'):
+            return wn.ADJ
+        elif tag.startswith('V'):
+            return wn.VERB
+        elif tag.startswith('N'):
+            return wn.NOUN
+        elif tag.startswith('R'):
+            return wn.ADV
+        else:
+            return None
+
     def analyze(self):
         """
         Performs the composition analysis by counting different parts of speech 

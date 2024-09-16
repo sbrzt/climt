@@ -2,16 +2,14 @@ import nltk
 import string
 import warnings
 from collections import Counter
-from src.modules.composition_module import CompositionModule
-from src.modules.word_module import WordModule
-from src.modules.readability_module import ReadabilityModule
-from src.modules.sentiment_module import SentimentModule
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
 from nltk.stem import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
 from nltk.tokenize import BlanklineTokenizer
 from nltk.tokenize import SyllableTokenizer
+from src.modules.analysis_module import AnalysisModule
+
 
 # Ensure required NLTK resources are downloaded
 #nltk.download('punkt')
@@ -24,46 +22,25 @@ from nltk.tokenize import SyllableTokenizer
 warnings.filterwarnings("ignore", category=UserWarning, message="Character not defined in sonority_hierarchy")
 
 
-class TextAnalyzer():
+class TextModule(AnalysisModule):
     """
-    A class for analyzing text data. This class provides methods for performing various 
-    text preprocessing tasks, tokenization, and statistical analysis of the text, such as 
-    word and character counts, syllable counts, and more.
-
-    Attributes:
-        text (str): The input text to be analyzed.
-        words (list): Tokenized words from the original text.
-        preprocessed_text (str): Text after preprocessing (e.g., stopword removal, lemmatization).
-        preprocessed_words (list): Tokenized words from the preprocessed text.
-        analysis (dict): Dictionary containing statistical analysis of the text.
     """
-
-    def __init__(self, text):
+    
+    def __init__(self, analyzer):
         """
-        Initializes the TextAnalyzer with the input text and performs tokenization, 
-        preprocessing, and text statistics calculation.
-
-        Args:
-            text (str): The input text to be analyzed.
         """
-        self.text = text
+        super().__init__(analyzer, "text_module")
+
         self.words = self.tokenize_text()
         self.preprocessed_text = self.preprocess_text(remove_stopwords=True, lemmatization=True)
         self.preprocessed_words = self.tokenize_preprocessed_text()
-        self.analysis = self.text_statistics()
 
-    
-    def get_text(self) -> str:
-        """
-        Returns the original text.
 
-        Returns:
-            str: The input text.
-        """
-        text = self.text
+    def get_text(self):
+        text = self.analyzer.text
         return text
 
-    
+
     def get_character_count(self) -> int:
         """
         Returns the total number of characters in the text.
@@ -83,9 +60,12 @@ class TextAnalyzer():
         Returns:
             float: The average characters per word.
         """
-        return self.get_character_count() / len(self.get_words())
+        character_count = self.get_character_count()
+        word_count = self.get_word_count()
+        average = round(character_count / word_count, 2)
+        return average
 
-    
+
     def get_syllable_count(self) -> int:
         """
         Returns the total number of syllables in the text using a syllable tokenizer.
@@ -95,9 +75,10 @@ class TextAnalyzer():
         """
         SSP = SyllableTokenizer()
         syllables = SSP.tokenize(self.get_text())
-        return len(syllables)
-
+        syllables_count = len(syllables)
+        return syllables_count
     
+
     def get_syllable_count_per_word(self) -> float:
         """
         Calculates the average number of syllables per word.
@@ -105,7 +86,10 @@ class TextAnalyzer():
         Returns:
             float: The average syllables per word.
         """
-        return self.get_syllable_count() / self.get_word_count()
+        syllable_count = self.get_syllable_count()
+        word_count = self.get_word_count()
+        average = round(syllable_count / word_count, 2)
+        return average
 
 
     def preprocess_text(self, remove_stopwords=False, stemming=False, lemmatization=False) -> str:
@@ -158,7 +142,13 @@ class TextAnalyzer():
         Returns:
             list: A list of words.
         """
-        return self.words
+        words = self.words
+        return words
+
+
+    def get_preprocessed_text(self):
+        preprocessed_text = self.preprocessed_text
+        return preprocessed_text
 
 
     def tokenize_preprocessed_text(self) -> list:
@@ -168,8 +158,9 @@ class TextAnalyzer():
         Returns:
             list: A list of preprocessed words.
         """
-        preprocessed_text = nltk.word_tokenize(self.preprocessed_text)
-        return preprocessed_text
+        preprocessed_text = self.get_preprocessed_text()
+        preprocessed_words = nltk.word_tokenize(preprocessed_text)
+        return preprocessed_words
 
 
     def get_preprocessed_words(self) -> list:
@@ -179,9 +170,10 @@ class TextAnalyzer():
         Returns:
             list: A list of preprocessed words.
         """
-        return self.preprocessed_words
+        preprocessed_words = self.preprocessed_words
+        return preprocessed_words
 
-
+    
     def get_word_count(self) -> int:
         """
         Returns the total number of words in the text.
@@ -189,7 +181,9 @@ class TextAnalyzer():
         Returns:
             int: The word count.
         """
-        return len(self.get_words())
+        words = self.get_words()
+        word_count = len(words)
+        return word_count
 
     
     def get_paragraphs(self) -> list:
@@ -200,11 +194,12 @@ class TextAnalyzer():
             list: A list of dictionaries where each dictionary represents a paragraph 
                   with an 'id' and 'content' key.
         """
-        paragraph_list = BlanklineTokenizer().tokenize(self.get_text())
-        paragraph_dict = [{'id': i, 'content': paragraph} for i, paragraph in enumerate(paragraph_list, 1)]
-        return paragraph_dict
+        text = self.get_text()
+        paragraph_list = BlanklineTokenizer().tokenize(text)
+        paragraph_dict_list = [{'id': i, 'content': paragraph} for i, paragraph in enumerate(paragraph_list, 1)]
+        return paragraph_dict_list
 
-    
+
     def get_paragraph_count(self) -> int:
         """
         Returns the number of paragraphs in the text.
@@ -212,9 +207,11 @@ class TextAnalyzer():
         Returns:
             int: The paragraph count.
         """
-        return len(self.get_paragraphs())
+        paragraphs = self.get_paragraphs()
+        paragraph_count = len(paragraphs)
+        return paragraph_count
 
-
+    
     def get_sentences(self) -> list:
         """
         Tokenizes the text into sentences.
@@ -234,7 +231,9 @@ class TextAnalyzer():
         Returns:
             int: The sentence count.
         """
-        return len(self.get_sentences())
+        sentences = self.get_sentences()
+        sentence_count = len(sentences)
+        return sentence_count
 
 
     def get_word_count_per_sentence(self) -> float:
@@ -244,9 +243,11 @@ class TextAnalyzer():
         Returns:
             float: The average word count per sentence.
         """
-        return self.get_word_count() / self.get_sentence_count()
+        word_count = self.get_word_count()
+        sentence_count = self.get_sentence_count()
+        return word_count / sentence_count
 
-    
+
     def get_word_count_per_paragraph(self) -> float:
         """
         Calculates the average number of words per paragraph.
@@ -254,9 +255,11 @@ class TextAnalyzer():
         Returns:
             float: The average word count per paragraph.
         """
-        return self.get_word_count() / self.get_paragraph_count()
+        word_count = self.get_word_count()
+        paragraph_count = self.get_paragraph_count()
+        return word_count / paragraph_count
 
-    
+
     def get_sentence_count_per_paragraph(self) -> float:
         """
         Calculates the average number of sentences per paragraph.
@@ -264,49 +267,9 @@ class TextAnalyzer():
         Returns:
             float: The average sentence count per paragraph.
         """
-        return self.get_sentence_count() / self.get_paragraph_count()
-
-
-    def get_most_common_word_frequencies(self) -> list:
-        """
-        Returns the 10 most common words in the preprocessed text along with their frequencies.
-
-        Returns:
-            list: A list of tuples where each tuple contains a word and its frequency.
-        """
-        return Counter(self.get_preprocessed_words()).most_common(10)
-
-
-    def get_word_pos(self) -> list:
-        """
-        Performs part-of-speech (POS) tagging on the tokenized words.
-
-        Returns:
-            list: A list of tuples where each tuple contains a word and its POS tag.
-        """
-        return nltk.pos_tag(self.get_words())
-
-    
-    def get_wordnet_pos(self, tag) -> str:
-        """
-        Maps a POS tag to the appropriate WordNet POS tag.
-
-        Args:
-            tag (str): The POS tag to map.
-
-        Returns:
-            str: The corresponding WordNet POS tag.
-        """
-        if tag.startswith('J'):
-            return wn.ADJ
-        elif tag.startswith('V'):
-            return wn.VERB
-        elif tag.startswith('N'):
-            return wn.NOUN
-        elif tag.startswith('R'):
-            return wn.ADV
-        else:
-            return None
+        sentence_count = self.get_sentence_count()
+        paragraph_count = self.get_paragraph_count()
+        return sentence_count / paragraph_count
 
 
     def get_unique_word_count(self) -> int:
@@ -316,10 +279,13 @@ class TextAnalyzer():
         Returns:
             int: The unique word count.
         """
-        return len(set(self.get_words()))
+        words = self.get_words()
+        unique_words = set(words)
+        unique_word_count = len(unique_words)
+        return unique_word_count
 
 
-    def text_statistics(self) -> dict:
+    def analyze(self) -> dict:
         """
         Collects and returns various statistics about the text, including character count, 
         word count, paragraph count, and more.
@@ -327,45 +293,18 @@ class TextAnalyzer():
         Returns:
             dict: A dictionary containing various text statistics.
         """
-        statistics_analysis = {
-            'text_statistics': {
-                'character_count': self.get_character_count(),
-                'character_per_word': self.get_character_per_word(),
-                'syllable_count': self.get_syllable_count(),
-                'syllables_per_word': self.get_syllable_count_per_word(),
-                'word_count': self.get_word_count(),
-                'paragraph_count': self.get_paragraph_count(),
-                'words_per_paragraph': self.get_word_count_per_paragraph(),
-                'sentences_per_paragraph': self.get_sentence_count_per_paragraph(),
-                'sentence_count': self.get_sentence_count(),
-                'words_per_sentence': self.get_word_count_per_sentence(),
-                'unique_word_count': self.get_unique_word_count(),
-            }
+        text_analysis = {
+            'character_count': self.get_character_count(),
+            'character_per_word': self.get_character_per_word(),
+            'syllable_count': self.get_syllable_count(),
+            'syllables_per_word': self.get_syllable_count_per_word(),
+            'word_count': self.get_word_count(),
+            'paragraph_count': self.get_paragraph_count(),
+            'words_per_paragraph': self.get_word_count_per_paragraph(),
+            'sentences_per_paragraph': self.get_sentence_count_per_paragraph(),
+            'sentence_count': self.get_sentence_count(),
+            'words_per_sentence': self.get_word_count_per_sentence(),
+            'unique_word_count': self.get_unique_word_count(),
         }
-        return statistics_analysis
+        return text_analysis
 
-
-    def analyze(self, focus):
-        """
-        Analyzes the text based on the specified focus areas, such as text composition, 
-        word analysis, readability, or sentiment.
-
-        Args:
-            focus (list): A list of focus areas to analyze (e.g., ['text', 'word', 'read', 'sentiment']).
-
-        Returns:
-            dict: A dictionary containing the analysis results for the specified focus areas.
-        """
-        if 'text' in focus:
-            composition_module = CompositionModule(self)
-            self.analysis['text_composition'] = composition_module.analyze()
-        if 'word' in focus:
-            word_module = WordModule(self)
-            self.analysis['word_analysis'] = word_module.analyze()
-        if 'read' in focus:
-            readability_module = ReadabilityModule(self)
-            self.analysis['readability_analysis'] = readability_module.analyze()
-        if 'sentiment' in focus:
-            sentiment_module = SentimentModule(self)
-            self.analysis['sentiment_analysis'] = sentiment_module.analyze()
-        return self.analysis

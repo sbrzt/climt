@@ -8,15 +8,14 @@ class AnalysisModule():
                   to support the analysis process.
     """
 
-    def __init__(self, analyzer):
+    def __init__(self, analyzer, name=None):
         """
-        Initializes the AnalysisModule with a specified analyzer.
-        
-        Args:
-            analyzer: An object or tool that performs the analysis or assists 
-                      in performing the analysis.
         """
+        self.name = name
         self.analyzer = analyzer
+    
+    def plug(self):
+        self.analyzer.modules.append(self)
 
     def analyze(self):
         """

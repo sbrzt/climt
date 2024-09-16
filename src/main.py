@@ -1,6 +1,6 @@
 import argparse
 import pprint
-from text_analyzer import TextAnalyzer
+from analyzer import Analyzer
 from report_generator import *
 
 
@@ -57,8 +57,10 @@ def main():
     else:
         raise Exception("No input text or file provided.")
         
-    analyzer = TextAnalyzer(text)
-    analysis = analyzer.analyze(args.focus)
+    analyzer = Analyzer(text)
+    analyzer.plug_modules(args.focus)
+    analyzer.generate_analysis()
+    analysis = analyzer.analysis
 
     if args.output == "stream":
         pprint.pprint(analysis)
