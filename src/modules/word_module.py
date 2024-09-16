@@ -1,4 +1,4 @@
-from modules.analysis_module import AnalysisModule
+from src.modules.analysis_module import AnalysisModule
 from nltk.corpus import wordnet as wn
 
 

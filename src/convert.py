@@ -1,19 +1,36 @@
 from rdflib import Graph, URIRef, Literal, Namespace, BNode
 from rdflib.namespace import RDF, RDFS, XSD
 
-# Namespaces
-#LEXINFO = Namespace("http://www.lexinfo.net/ontology/2.0/lexinfo#")
-#ONTOLEX = Namespace("http://www.w3.org/ns/lemon/ontolex#")
-#EX = Namespace("http://example.org/")
+# CONVERSIONENGINE
+# document -> InformationObject
+# text -> LinguisticObject
+# character -> SymbolicObject
+# syllable -> SymbolicObject
+# word -> InformationObject
+# sentence -> InformationObject
+# paragraph -> InformationObject
+# results -> PropositionalObject
+# AttributeAssignment
+# attributeAssignment --assigned--> Dimension --hasValue--> number (es. number of X)
+# type -> Type
+# person, software -> Actor
 
-# report/document ->
-# text -> 
-# character -> 
-# syllable ->
-# word -> 
-# sentence -> doco:Sentence
-# paragraph -> doco:Paragraph
-# 
+# word -> symbolicObject
+# attributeAssignment --assigned--> Dimension --hasValue--> number
+# type -> Type
+# sense 
+
+# word -> symbolicObject
+# attributeAssignment --assigned--> Dimension --hasValue--> number
+# type -> Type
+
+# document -> informationObject
+# attributeAssignment --assigned--> Dimension --hasValue--> number
+# type -> Type
+
+# paragraph -> informationObject
+# attributeAssignment --assigned--> Dimension --hasValue--> number
+# type -> Type
 
 
 g = Graph()

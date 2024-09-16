@@ -2,10 +2,10 @@ import nltk
 import string
 import warnings
 from collections import Counter
-from modules.composition_module import CompositionModule
-from modules.word_module import WordModule
-from modules.readability_module import ReadabilityModule
-from modules.sentiment_module import SentimentModule
+from src.modules.composition_module import CompositionModule
+from src.modules.word_module import WordModule
+from src.modules.readability_module import ReadabilityModule
+from src.modules.sentiment_module import SentimentModule
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
 from nltk.stem import WordNetLemmatizer
@@ -60,7 +60,8 @@ class TextAnalyzer():
         Returns:
             str: The input text.
         """
-        return self.text
+        text = self.text
+        return text
 
     
     def get_character_count(self) -> int:
@@ -70,7 +71,9 @@ class TextAnalyzer():
         Returns:
             int: The character count.
         """
-        return len(self.get_text())
+        text = self.get_text()
+        character_count = len(text)
+        return character_count
 
 
     def get_character_per_word(self) -> int:
@@ -143,8 +146,9 @@ class TextAnalyzer():
         Returns:
             list: A list of words in the text.
         """
-        words = nltk.word_tokenize(self.get_text())
-        return words
+        text = self.get_text()
+        tokens = [word for sentence in self.get_sentences() for word in nltk.word_tokenize(text) if word.isalpha()]
+        return tokens
 
 
     def get_words(self) -> list:
@@ -218,7 +222,9 @@ class TextAnalyzer():
         Returns:
             list: A list of sentences.
         """
-        return nltk.sent_tokenize(self.get_text())
+        text = self.get_text()
+        sentences = nltk.sent_tokenize(text)
+        return sentences
 
 
     def get_sentence_count(self) -> int:
@@ -263,12 +269,12 @@ class TextAnalyzer():
 
     def get_most_common_word_frequencies(self) -> list:
         """
-        Returns the 50 most common words in the preprocessed text along with their frequencies.
+        Returns the 10 most common words in the preprocessed text along with their frequencies.
 
         Returns:
             list: A list of tuples where each tuple contains a word and its frequency.
         """
-        return Counter(self.get_preprocessed_words()).most_common(50)
+        return Counter(self.get_preprocessed_words()).most_common(10)
 
 
     def get_word_pos(self) -> list:
@@ -313,16 +319,6 @@ class TextAnalyzer():
         return len(set(self.get_words()))
 
 
-    def get_type_token_ratio(self) -> float:
-        """
-        Calculates the type-token ratio (TTR), which is the ratio of unique words to the total word count.
-
-        Returns:
-            float: The type-token ratio.
-        """
-        return self.get_unique_word_count() / self.get_word_count()
-
-
     def text_statistics(self) -> dict:
         """
         Collects and returns various statistics about the text, including character count, 
@@ -344,7 +340,6 @@ class TextAnalyzer():
                 'sentence_count': self.get_sentence_count(),
                 'words_per_sentence': self.get_word_count_per_sentence(),
                 'unique_word_count': self.get_unique_word_count(),
-                'type_token_ratio': self.get_type_token_ratio()
             }
         }
         return statistics_analysis

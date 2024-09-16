@@ -1,4 +1,4 @@
-from modules.analysis_module import AnalysisModule
+from src.modules.analysis_module import AnalysisModule
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 
@@ -42,7 +42,6 @@ class SentimentModule(AnalysisModule):
         polarity_scores = sentiment_intensity_analyzer.polarity_scores(text)
         return polarity_scores
     
-
     def analyze(self):
         """
         Analyzes the sentiment of each paragraph in the text and classifies it as positive, 
