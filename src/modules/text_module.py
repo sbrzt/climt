@@ -12,13 +12,18 @@ from src.modules.analysis_module import AnalysisModule
 
 
 # Ensure required NLTK resources are downloaded
-#nltk.download('punkt')
-#nltk.download('stopwords')
-#nltk.download('averaged_perceptron_tagger')
-#nltk.download('wordnet')
-#nltk.download('maxent_ne_chunker')
-#nltk.download('words')
-#nltk.download('vader_lexicon')
+# Uncomment them the first time and run to download them
+# Then you can re-comment them
+"""
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('maxent_ne_chunker')
+nltk.download('words')
+nltk.download('vader_lexicon')
+"""
 warnings.filterwarnings("ignore", category=UserWarning, message="Character not defined in sonority_hierarchy")
 
 
@@ -31,15 +36,6 @@ class TextModule(AnalysisModule):
         """
         super().__init__(analyzer, "text_module")
 
-        self.words = self.tokenize_text()
-        self.preprocessed_text = self.preprocess_text(remove_stopwords=True, lemmatization=True)
-        self.preprocessed_words = self.tokenize_preprocessed_text()
-
-
-    def get_text(self):
-        text = self.analyzer.text
-        return text
-
 
     def get_character_count(self) -> int:
         """
@@ -48,7 +44,7 @@ class TextModule(AnalysisModule):
         Returns:
             int: The character count.
         """
-        text = self.get_text()
+        text = self.analyzer.get_text()
         character_count = len(text)
         return character_count
 
@@ -74,7 +70,7 @@ class TextModule(AnalysisModule):
             int: The syllable count.
         """
         SSP = SyllableTokenizer()
-        syllables = SSP.tokenize(self.get_text())
+        syllables = SSP.tokenize(self.analyzer.get_text())
         syllables_count = len(syllables)
         return syllables_count
     
@@ -91,90 +87,6 @@ class TextModule(AnalysisModule):
         average = round(syllable_count / word_count, 2)
         return average
 
-
-    def preprocess_text(self, remove_stopwords=False, stemming=False, lemmatization=False) -> str:
-        """
-        Preprocesses the text by converting to lowercase, removing punctuation, and optionally 
-        removing stopwords, stemming, and lemmatizing.
-
-        Args:
-            remove_stopwords (bool): Whether to remove stopwords.
-            stemming (bool): Whether to apply stemming.
-            lemmatization (bool): Whether to apply lemmatization.
-
-        Returns:
-            str: The preprocessed text.
-        """
-        text = self.get_text().lower()
-        text = text.translate(str.maketrans('', '', string.punctuation))
-
-        if remove_stopwords == True:
-            STOPWORDS = set(stopwords.words('english'))
-            text = " ".join([word for word in str(text).split() if word not in STOPWORDS])
-
-        if stemming == True:
-            stemmer = PorterStemmer()
-            text = " ".join([stemmer.stem(word) for word in text.split()])
-
-        if lemmatization == True:
-            lemmatizer = WordNetLemmatizer()
-            text = " ".join([lemmatizer.lemmatize(word) for word in text.split()])
-
-        return text
-
-
-    def tokenize_text(self) -> list:
-        """
-        Tokenizes the original text into words.
-
-        Returns:
-            list: A list of words in the text.
-        """
-        text = self.get_text()
-        sentences = self.get_sentences()
-        #[{'id': i, 'content': word} for i, word in enumerate(sentence, 1)]
-        tokens = [word for sentence in sentences for word in nltk.word_tokenize(sentence['content']) if word.isalpha()]
-        return tokens
-
-
-    def get_words(self) -> list:
-        """
-        Returns the tokenized words of the original text.
-
-        Returns:
-            list: A list of words.
-        """
-        words = self.words
-        return words
-
-
-    def get_preprocessed_text(self):
-        preprocessed_text = self.preprocessed_text
-        return preprocessed_text
-
-
-    def tokenize_preprocessed_text(self) -> list:
-        """
-        Tokenizes the preprocessed text into words.
-
-        Returns:
-            list: A list of preprocessed words.
-        """
-        preprocessed_text = self.get_preprocessed_text()
-        preprocessed_words = nltk.word_tokenize(preprocessed_text)
-        return preprocessed_words
-
-
-    def get_preprocessed_words(self) -> list:
-        """
-        Returns the tokenized words from the preprocessed text.
-
-        Returns:
-            list: A list of preprocessed words.
-        """
-        preprocessed_words = self.preprocessed_words
-        return preprocessed_words
-
     
     def get_word_count(self) -> int:
         """
@@ -183,7 +95,7 @@ class TextModule(AnalysisModule):
         Returns:
             int: The word count.
         """
-        words = self.get_words()
+        words = self.analyzer.get_words()
         word_count = len(words)
         return word_count
 
@@ -196,7 +108,7 @@ class TextModule(AnalysisModule):
             list: A list of dictionaries where each dictionary represents a paragraph 
                   with an 'id' and 'content' key.
         """
-        text = self.get_text()
+        text = self.analyzer.get_text()
         paragraph_list = BlanklineTokenizer().tokenize(text)
         paragraph_dict_list = [{'id': i, 'content': paragraph} for i, paragraph in enumerate(paragraph_list, 1)]
         return paragraph_dict_list
@@ -213,19 +125,6 @@ class TextModule(AnalysisModule):
         paragraph_count = len(paragraphs)
         return paragraph_count
 
-    
-    def get_sentences(self) -> list:
-        """
-        Tokenizes the text into sentences.
-
-        Returns:
-            list: A list of sentences.
-        """
-        text = self.get_text()
-        sentence_list = nltk.sent_tokenize(text)
-        sentence_dict_list = [{'id': i, 'content': sentence} for i, sentence in enumerate(sentence_list, 1)]
-        return sentence_dict_list
-
 
     def get_sentence_count(self) -> int:
         """
@@ -234,7 +133,7 @@ class TextModule(AnalysisModule):
         Returns:
             int: The sentence count.
         """
-        sentences = self.get_sentences()
+        sentences = self.analyzer.get_sentences()
         sentence_count = len(sentences)
         return sentence_count
 
@@ -282,7 +181,7 @@ class TextModule(AnalysisModule):
         Returns:
             int: The unique word count.
         """
-        words = self.get_words()
+        words = self.analyzer.get_words()
         unique_words = set(words)
         unique_word_count = len(unique_words)
         return unique_word_count

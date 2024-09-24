@@ -8,14 +8,8 @@ text_module = TextModule(analyzer)
 
 class TestTextModule(unittest.TestCase):
 
-    def test_get_text(self):
-        assert text_module.get_text() == "Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of the darkness."
-
     def test_get_character_count(self):
         assert text_module.get_character_count() == 111
-
-    def test_get_words(self):
-        assert text_module.get_words() == ["Blessed", "is", "he", "who", "in", "the", "name", "of", "charity", "and", "good", "will", "shepherds", "the", "weak", "through", "the", "valley", "of", "the", "darkness"]
 
     def test_get_word_count(self):
         assert text_module.get_word_count() == 21
@@ -28,9 +22,6 @@ class TestTextModule(unittest.TestCase):
 
     def test_get_syllable_count_per_word(self):
         assert text_module.get_syllable_count_per_word() == 1.95
-
-    def test_get_sentences(self):
-        assert text_module.get_sentences() == [{"id": 1, "content": "Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of the darkness."}]
 
     def test_get_sentence_count(self):
         assert text_module.get_sentence_count() == 1
@@ -49,12 +40,6 @@ class TestTextModule(unittest.TestCase):
 
     def test_get_sentence_count_per_paragraph(self):
         assert text_module.get_sentence_count_per_paragraph() == 1
-
-    def test_get_preprocessed_text(self):
-        assert text_module.get_preprocessed_text() == "blessed name charity good shepherd weak valley darkness"
-
-    def test_get_preprocessed_words(self):
-        assert text_module.get_preprocessed_words() == ["blessed", "name", "charity", "good", "shepherd", "weak", "valley", "darkness"]
 
     def test_get_unique_word_count(self):
         assert text_module.get_unique_word_count() == 17

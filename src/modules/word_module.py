@@ -28,19 +28,6 @@ class WordModule(AnalysisModule):
 
     def analyze(self):
         """
-        Analyzes the most common words in the text and provides details for each word, including:
-        - Number of occurrences
-        - Frequency percentage (relative to total word count)
-        - Part-of-speech (POS) tag
-        - Word senses (definitions) from WordNet
-
-        The analysis covers the top N most common words, as provided by the analyzer's 
-        word frequency analysis.
-
-        Returns:
-            dict: A dictionary where each key is a word and the value is another dictionary 
-                  containing details about the word (occurrences, frequency percent, POS tag, 
-                  and word senses).
         """
         word_details = {}
         word_frequencies = self.analyzer.get_most_common_word_frequencies()
