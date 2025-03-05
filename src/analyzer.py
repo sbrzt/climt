@@ -2,6 +2,7 @@ import nltk
 import string
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from src.modules.text_module import TextModule
 
 
 class Analyzer():
@@ -9,8 +10,6 @@ class Analyzer():
     """
 
     def __init__(self, text):
-        """
-        """
         self.text = text
         self.words = self.tokenize_text()
         self.preprocessed_text = self.preprocess_text(remove_stopwords=True, lemmatization=True)
@@ -41,7 +40,6 @@ class Analyzer():
         """
         text = self.get_text()
         sentences = self.get_sentences()
-        #[{'id': i, 'content': word} for i, word in enumerate(sentence, 1)]
         tokens = [word for sentence in sentences for word in nltk.word_tokenize(sentence['content']) if word.isalpha()]
         return tokens
 
@@ -89,7 +87,13 @@ class Analyzer():
         return preprocessed_words
 
 
-    def get_text(self):
+    def get_text(self) -> str:
+        """
+        Returns the content of the original text as a string.
+
+        Returns:
+            str: A string.
+        """
         text = self.text
         return text
 
@@ -106,6 +110,12 @@ class Analyzer():
 
 
     def get_preprocessed_text(self) -> str:
+        """
+        Returns the content of the preprocessed text.
+
+        Returns:
+            str: A string.
+        """
         preprocessed_text = self.preprocessed_text
         return preprocessed_text
 
@@ -125,18 +135,9 @@ class Analyzer():
         if "text" in focus:
             text_module = TextModule(self)
             text_module.plug()
-        if 'word' in focus:
-            word_module = WordModule(self)
-            word_module.plug()
-        if 'read' in focus:
-            readability_module = ReadabilityModule(self)
-            readability_module.plug()
-        if 'sentiment' in focus:
-            sentiment_module = SentimentModule(self)
-            sentiment_module.plug()
 
 
-    def generate_analysis(self):
+    def generate_analysis(self) -> dict:
         for module in self.modules:
             self.analysis[module.name] = module.analyze()
         return self.analysis

@@ -31,34 +31,6 @@ class ReportGenerator:
         pass
 
 
-class JSONReportGenerator(ReportGenerator):
-    """
-    A subclass of ReportGenerator that saves the analysis report in JSON format.
-
-    Inherits:
-        ReportGenerator: Base class for report generation.
-    """
-
-    def __init__(self, analysis):
-        """
-        Initializes the JSONReportGenerator with the analysis data.
-
-        Args:
-            analysis (dict): The results of the text analysis to be included in the report.
-        """
-        super().__init__(analysis)
-
-    def save_report(self, filename):
-        """
-        Saves the analysis report in JSON format with indentation for readability.
-
-        Args:
-            filename (str): The name of the file where the report will be saved.
-        """
-        with open(filename, "w") as jsonfile:
-            json.dump(self.analysis, jsonfile, indent=4)
-
-
 class TXTReportGenerator(ReportGenerator):
     """
     A subclass of ReportGenerator that saves the analysis report in plain text format.
@@ -93,22 +65,3 @@ class TXTReportGenerator(ReportGenerator):
             txtfile.write("\n## TEXT STATISTICS\n")
             txtfile.write(''.join(map(lambda item: f"- **{item[0].replace('_', ' ').title()}**: {item[1]}\n", self.analysis['text_statistics'].items())))
 
-            if 'text_composition' in self.analysis:
-                txtfile.write("\n## TEXT COMPOSITION\n")
-                txtfile.write(''.join(map(lambda item: f"- **{item[0].replace('_', ' ').title()}**: {item[1]}\n", self.analysis['text_composition'].items())))
-
-            if 'word_analysis' in self.analysis:
-                txtfile.write('\n## WORD ANALYSIS\n')
-                txtfile.write(''.join(map(lambda item: f"- **{item[0].replace('_', ' ').title()}**: {item[1]}\n", self.analysis['word_analysis'].items())))
-
-            if 'readability_analysis' in self.analysis:
-                txtfile.write("\n## READABILITY\n")
-                txtfile.write(''.join(map(lambda item: f"- **{item[0].replace('_', ' ').title()}**: {item[1]}\n", self.analysis['readability_analysis'].items())))
-            
-            if 'sentiment_analysis' in self.analysis:
-                txtfile.write("\n## SENTIMENT ANALYSIS\n")
-                txtfile.write(''.join(map(lambda item: f"- {item[0]}: {item[1]}\n", self.analysis['sentiment_analysis'].items())))
-
-    # JSON-LD
-    # TURTLE
-    # HTML-RDFa

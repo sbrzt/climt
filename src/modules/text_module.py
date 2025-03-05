@@ -32,9 +32,7 @@ class TextModule(AnalysisModule):
     """
     
     def __init__(self, analyzer):
-        """
-        """
-        super().__init__(analyzer, "text_module")
+        super().__init__(analyzer, "text_analysis")
 
 
     def get_character_count(self) -> int:
