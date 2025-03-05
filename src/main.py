@@ -20,8 +20,7 @@ def main():
     parser.add_argument(
         "--output", 
         choices=[
-            "stream", 
-            "json", 
+            "stream",
             "txt",
             "md",
         ], 
@@ -37,11 +36,6 @@ def main():
         nargs='*', 
         choices=[
             "text",
-            "word", 
-            "read", 
-            "ngram", 
-            "ner",
-            "sentiment",
         ], 
         default=["text"], 
         help="Focus of the analysis"
@@ -68,9 +62,7 @@ def main():
         if not args.outfile:
             print(f"Filename required for .{args.output} output")
         else:
-            if args.output == "json":
-                report_generator = JSONReportGenerator(analysis)
-            elif args.output == "txt" or args.output == "md":
+            if args.output == "txt" or args.output == "md":
                 report_generator = TXTReportGenerator(analysis)
             else:
                 print("Invalid format choice")
