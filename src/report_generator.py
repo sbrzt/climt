@@ -1,5 +1,4 @@
 import json
-from tabulate import tabulate
 
 
 class ReportGenerator:
@@ -63,4 +62,4 @@ class TXTReportGenerator(ReportGenerator):
         with open(filename, "w") as txtfile:
             txtfile.write(f"# LODOT REPORT FOR {filename}")
             txtfile.write("\n## TEXT STATISTICS\n")
-            txtfile.write(''.join(map(lambda item: f"- **{item[0].replace('_', ' ').title()}**: {item[1]}\n", self.analysis['text_statistics'].items())))
+            txtfile.write(''.join(map(lambda item: f"- **{item[0].replace('_', ' ').title()}**: {item[1]}\n", self.analysis['text_analysis'].items())))

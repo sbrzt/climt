@@ -60,7 +60,7 @@ class TestTextModule(unittest.TestCase):
         }
     
     def test_name(self):
-        assert text_module.name == "text_module"
+        assert text_module.name == "text_analysis"
 
 if __name__ == "__main__":
     unittest.main()

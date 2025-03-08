@@ -2,6 +2,7 @@ import nltk
 import string
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from modules.text_module import TextModule
 
 
 class Analyzer():

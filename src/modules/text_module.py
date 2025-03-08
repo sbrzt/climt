@@ -8,7 +8,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.stem.porter import PorterStemmer
 from nltk.tokenize import BlanklineTokenizer
 from nltk.tokenize import SyllableTokenizer
-from src.modules.analysis_module import AnalysisModule
+from modules.analysis_module import AnalysisModule
 
 
 # Ensure required NLTK resources are downloaded
@@ -38,7 +38,7 @@ class TextModule(AnalysisModule):
     """
     
     def __init__(self, analyzer):
-        super().__init__(analyzer, "text_module")
+        super().__init__(analyzer, "text_analysis")
 
 
     def get_character_count(self) -> int:

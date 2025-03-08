@@ -11,7 +11,7 @@ def main():
     parser.add_argument(
         "input", 
         nargs='?', 
-        help="Raw text or path to the input text file"
+        help="Raw text"
     )
     parser.add_argument(
         "--file", 
@@ -67,7 +67,7 @@ def main():
             else:
                 print("Invalid format choice")
     
-    report_generator.save_report(f"{args.outfile}.{args.output}")
+        report_generator.save_report(f"{args.outfile}.{args.output}")
 
 if __name__ == "__main__":
     main()
