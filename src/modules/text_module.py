@@ -29,11 +29,15 @@ warnings.filterwarnings("ignore", category=UserWarning, message="Character not d
 
 class TextModule(AnalysisModule):
     """
+    The TextModule class extends the AnalysisModule class and provides various text analysis functionalities. 
+    It computes several statistics about the text such as character count, word count, sentence count, 
+    paragraph count, syllable count, average characters per word, syllables per word, and more.
+
+    This class assumes that the `analyzer` object passed to it has methods to retrieve the text, words, and sentences 
+    from the text for analysis.
     """
     
     def __init__(self, analyzer):
-        """
-        """
         super().__init__(analyzer, "text_module")
 
 

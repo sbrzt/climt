@@ -9,8 +9,6 @@ class AnalysisModule():
     """
 
     def __init__(self, analyzer, name=None):
-        """
-        """
         self.name = name
         self.analyzer = analyzer
     
