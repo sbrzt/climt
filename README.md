@@ -1,5 +1,8 @@
 # LODOT
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14994045.svg)](https://doi.org/10.5281/zenodo.14994045)
+
+
 ## Description
 
 LODOT is a simple CLI for producing text mining reports in a machine-actionable format.
@@ -102,3 +105,24 @@ chmod +x test.sh
 ## Author
 
 Barzaghi, Sebastian (https://orcid.org/0000-0002-0799-1527).
+
+## Citation
+
+```
+@software{barzaghi_2025_14994045,
+  author       = {Barzaghi, Sebastian},
+  title        = {LODOT},
+  month        = mar,
+  year         = 2025,
+  publisher    = {Zenodo},
+  version      = {v1.0.0},
+  doi          = {10.5281/zenodo.14994045},
+  url          = {https://doi.org/10.5281/zenodo.14994045},
+  swhid        = {swh:1:dir:3ed76b26799f6c467462694f3fb559a7d6157fb4
+                   ;origin=https://doi.org/10.5281/zenodo.14994044;vi
+                   sit=swh:1:snp:6f73683da2edea4d58c9d324592251ddf66b
+                   5a96;anchor=swh:1:rel:924dee9e6fa7d3674e5417ac593d
+                   e2a32ac9701b;path=sbrzt-lodot-8ea7eb0
+                  },
+}
+```

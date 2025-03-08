@@ -6,4 +6,7 @@ authors:
     orcid: https://orcid.org/0000-0002-0799-1527
 title: "LODOT"
 version: 1.0.0
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.14994045
 date-released: 2025-03-08
