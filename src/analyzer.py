@@ -5,7 +5,6 @@ import string
 from config import module_map
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from modules.text_module import TextModule
 
 
 class Analyzer():
@@ -76,7 +75,8 @@ class Analyzer():
 
 
     def get_text(self):
-        return self.text
+        text = self.text
+        return text
 
 
     def get_words(self) -> list:
@@ -84,7 +84,8 @@ class Analyzer():
 
 
     def get_preprocessed_text(self) -> str:
-        return self.preprocessed_text
+        preprocessed_text = self.preprocessed_text
+        return preprocessed_text
 
 
     def get_preprocessed_words(self) -> list:
@@ -92,13 +93,21 @@ class Analyzer():
 
 
     def plug_modules(self, focus):
-        for f in focus:
-            if f in module_map:
-                module = module_map[f](self)
-                module.plug()
+        if "text" in focus:
+            text_module = TextModule(self)
+            text_module.plug()
+        if 'word' in focus:
+            word_module = WordModule(self)
+            word_module.plug()
+        if 'read' in focus:
+            readability_module = ReadabilityModule(self)
+            readability_module.plug()
+        if 'sentiment' in focus:
+            sentiment_module = SentimentModule(self)
+            sentiment_module.plug()
 
 
-    def generate_analysis(self):
+    def generate_analysis(self) -> dict:
         for module in self.modules:
             self.analysis[module.name] = module.analyze()
         return self.analysis

@@ -12,6 +12,7 @@ class TextModule(AnalysisModule):
         self._words = self.analyzer.get_words()
         self._paragraphs = self.get_paragraphs()
 
+
     def get_character_count(self) -> int:
         return len(self._text)
 

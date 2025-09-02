@@ -8,6 +8,8 @@ class AnalysisModule():
         self.analyzer = analyzer
     
     def plug(self):
+        """
+        """
         self.analyzer.modules.append(self)
 
     def analyze(self):
