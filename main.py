@@ -38,6 +38,7 @@ def main():
         nargs='*', 
         choices=[
             "text",
+            "word_stats"
         ], 
         default=["text"], 
         help="Focus of the analysis"
