@@ -1,0 +1,11 @@
+[project]
+name = "lodot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pip>=25.2",
+    "pytest>=8.4.1",
+    "spacy>=3.8.7",
+]

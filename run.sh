@@ -1,0 +1,1 @@
+python3 main.py "This is a sample text. And this is a sample sentence."

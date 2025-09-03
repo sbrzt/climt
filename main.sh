@@ -1,1 +1,0 @@
-python3 src/main.py "This is a sample text."
