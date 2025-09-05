@@ -40,20 +40,16 @@ def test_get_unique_word_count():
     assert text_module.get_unique_word_count() == 17
 
 def test_analyze():
-    assert text_module.analyze() == {
-        'character_count': 111, 
-        'character_per_word': 5.29, 
-        'word_count': 21, 
-        'paragraph_count': 1, 
-        'words_per_paragraph': 21.0, 
-        'sentences_per_paragraph': 1.0, 
-        'sentence_count': 1, 
-        'words_per_sentence': 21.0, 
-        'unique_word_count': 17
-    }
+    result = text_module.analyze()
+    assert result["character_per_word"] == 5.29
+    assert result["word_count"] == 21
+    assert result["paragraph_count"] == 1
+    assert result["words_per_paragraph"] == 21.0
+    assert result["sentences_per_paragraph"] == 1.0
+    assert result["sentence_count"] == 1
+    assert result["words_per_sentence"] == 21.0
+    assert result["unique_word_count"] == 17
+    assert result["character_count"] == 111
 
 def test_name():
     assert text_module.name == "text_analysis"
-
-if __name__ == "__main__":
-    unittest.main()

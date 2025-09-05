@@ -40,13 +40,13 @@ The software is designed to analyze a text or a text file and generate reports i
 ### Basic command structure
 
 ```bash
-python3 src/main.py [input] [options]
+python3 main.py [input] [options]
 ```
 
-It is possible to type the command directly in the command line, or type it in the `main.sh` file and then run it via
+It is possible to type the command directly in the command line, or type it in the `run.sh` file and then run it via
 
 ```bash
-./main.sh
+./run.sh
 ```
 
 ### Arguments and options
@@ -60,27 +60,28 @@ It is possible to type the command directly in the command line, or type it in t
 * `--outfile `(Optional): If you select any option other than `stream` as the output format, you can provide a file name for the output file. If not specified, the file will be named according to the format (e.g., `output.txt` or `output.md`).
 * `--focus` (Optional): This option allows you to specify the focus of the analysis. The available choices are:
     * `text` (default): Perform a general analysis of the text.
+    * `word_stats`: Perform a statistical analysis of each word in the text. Also allows generating visualizations for word frequencies.
 
-You can provide multiple focus areas by separating them with spaces, but for now, only `text` is available.
+You can provide multiple focus areas by separating them with spaces.
 
 ### Examples
 
 #### Analyze raw text and print the report in the terminal
 
 ```bash
-python src/main.py "This is a sample text."
+python main.py "This is a sample text."
 ```
 
 #### Analyze raw text and save the report in a .txt file
 
 ```bash
-python src/main.py "This is a sample text." --output txt --outfile report.txt
+python main.py "This is a sample text." --output txt --outfile report.txt
 ```
 
 #### Analyze a text file and save the report in a .md file
 
 ```bash
-python src/main.py --file input.txt --output md --outfile report.md
+python main.py --file input.txt --output md --outfile report.md
 ```
 
 ## Testing
@@ -95,7 +96,7 @@ chmod +x test.sh
 
 ## Roadmap
 
-- [ ] Add more analysis modules (text composition, words, sentiment, accessibility);
+- [ ] Add more analysis modules (text composition, sentiment, readability);
 - [ ] Implement better CLI UX design;
 - [ ] Add other formats for report generation (JSON, XML, HTML);
 - [ ] Add RDF conversion;
