@@ -63,6 +63,7 @@ It is possible to type the command directly in the command line, or type it in t
     * `word_stats`: Performs a statistical analysis on each word in the text. Also allows generating visualizations for word frequencies.
     * `pos_stats`: Performs a statistical Part-of-Speech (PoS) analysis on the text. Also allows generating visualizations for PoS frequencies.
     * `readability`: Performs a statistical readability analysis on the text.
+    * `sentiment`: Performs a sentiment analysis on the text.
 
 You can provide multiple focus areas by separating them with spaces.
 
@@ -98,7 +99,7 @@ chmod +x test.sh
 
 ## Roadmap
 
-- [ ] Add more analysis modules (sentiment, readability);
+- [x] Add more analysis modules;
 - [ ] Implement better CLI UX design;
 - [ ] Add other formats for report generation (JSON, XML, HTML);
 - [ ] Add RDF conversion;

@@ -40,7 +40,8 @@ def main():
             "text",
             "word_stats",
             "pos_stats",
-            "readability"
+            "readability",
+            "sentiment"
         ], 
         default=["text"], 
         help="Focus of the analysis"
