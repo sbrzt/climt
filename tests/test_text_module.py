@@ -52,4 +52,4 @@ def test_analyze():
     assert result["character_count"] == 111
 
 def test_name():
-    assert text_module.name == "text_analysis"
+    assert text_module.name == "text_stats"

@@ -5,7 +5,7 @@
 
 ## Description
 
-LODOT is a simple CLI for producing text mining reports in a machine-actionable format.
+LODOT is a modular data engineering CLI tool for easily producing text mining reports in machine-actionable formats.
 
 ## Installation
 
@@ -59,8 +59,10 @@ It is possible to type the command directly in the command line, or type it in t
     * `md`: The output is saved as a Markdown file.
 * `--outfile `(Optional): If you select any option other than `stream` as the output format, you can provide a file name for the output file. If not specified, the file will be named according to the format (e.g., `output.txt` or `output.md`).
 * `--focus` (Optional): This option allows you to specify the focus of the analysis. The available choices are:
-    * `text` (default): Perform a general analysis of the text.
-    * `word_stats`: Perform a statistical analysis of each word in the text. Also allows generating visualizations for word frequencies.
+    * `text` (default): Performs a general statistical analysis on the text.
+    * `word_stats`: Performs a statistical analysis on each word in the text. Also allows generating visualizations for word frequencies.
+    * `pos_stats`: Performs a statistical Part-of-Speech (PoS) analysis on the text. Also allows generating visualizations for PoS frequencies.
+    * `readability`: Performs a statistical readability analysis on the text.
 
 You can provide multiple focus areas by separating them with spaces.
 
@@ -96,7 +98,7 @@ chmod +x test.sh
 
 ## Roadmap
 
-- [ ] Add more analysis modules (text composition, sentiment, readability);
+- [ ] Add more analysis modules (sentiment, readability);
 - [ ] Implement better CLI UX design;
 - [ ] Add other formats for report generation (JSON, XML, HTML);
 - [ ] Add RDF conversion;

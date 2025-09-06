@@ -6,7 +6,7 @@ from src.modules.analysis_module import AnalysisModule
 class TextModule(AnalysisModule):
     
     def __init__(self, analyzer):
-        super().__init__(analyzer, "text_analysis")
+        super().__init__(analyzer, "text_stats")
         self._text = self.analyzer.get_text()
         self._sentences = self.analyzer.get_sentences()
         self._words = self.analyzer.get_words()
@@ -44,7 +44,7 @@ class TextModule(AnalysisModule):
         return len(set(self._words))
 
     def analyze(self) -> dict:
-        text_analysis = {
+        text_stats = {
             'character_count': self.get_character_count(),
             'character_per_word': self.get_character_per_word(),
             'word_count': self.get_word_count(),
@@ -55,5 +55,5 @@ class TextModule(AnalysisModule):
             'words_per_sentence': self.get_word_count_per_sentence(),
             'unique_word_count': self.get_unique_word_count(),
         }
-        return text_analysis
+        return text_stats
 

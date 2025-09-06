@@ -39,7 +39,8 @@ def main():
         choices=[
             "text",
             "word_stats",
-            "pos_stats"
+            "pos_stats",
+            "readability"
         ], 
         default=["text"], 
         help="Focus of the analysis"
