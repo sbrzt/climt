@@ -1,13 +1,13 @@
-# src/modules/sentiment_module.py
+# src/modules/sentiment.py
 
 from textblob import TextBlob
-from src.modules.analysis_module import AnalysisModule
+from src.modules.analysis import AnalysisModule
 
 
 class SentimentModule(AnalysisModule):
 
     def __init__(self, analyzer):
-        super().__init__(analyzer, "sentiment")
+        super().__init__(analyzer, "sent")
         self.text = analyzer.get_text()
         self.sentences = analyzer.get_sentences()
 

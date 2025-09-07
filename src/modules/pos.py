@@ -1,13 +1,13 @@
-# src/modules/pos_module.py
+# src/modules/pos.py
 
 from collections import Counter
-from src.modules.analysis_module import AnalysisModule
+from src.modules.analysis import AnalysisModule
 
 
 class POSModule(AnalysisModule):
     
     def __init__(self, analyzer):
-        super().__init__(analyzer, "pos_stats")
+        super().__init__(analyzer, "pos")
         self.doc = analyzer.doc
 
     def analyze(self) -> dict:

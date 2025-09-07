@@ -1,4 +1,4 @@
-# modules/analysis_module.py
+# modules/analysis.py
 
 
 class AnalysisModule():

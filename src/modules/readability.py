@@ -1,13 +1,13 @@
-# src/modules/readability_module.py
+# src/modules/readability.py
 
 import textstat
-from src.modules.analysis_module import AnalysisModule
+from src.modules.analysis import AnalysisModule
 
 
 class ReadabilityModule(AnalysisModule):
     
     def __init__(self, analyzer):
-        super().__init__(analyzer, "readability")
+        super().__init__(analyzer, "read")
         self.text = analyzer.get_text()
 
     def analyze(self) -> dict:

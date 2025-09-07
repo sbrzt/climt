@@ -1,6 +1,6 @@
 import pytest
 from src.analyzer import Analyzer
-from src.modules.sentiment_module import SentimentModule
+from src.modules.sentiment import SentimentModule
 
 
 sample_text = "Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of the darkness."

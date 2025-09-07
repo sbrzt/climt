@@ -1,6 +1,6 @@
 import pytest
 from src.analyzer import Analyzer
-from src.modules.text_module import TextModule
+from src.modules.text import TextModule
 
 
 sample_text = "Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of the darkness."
@@ -52,4 +52,4 @@ def test_analyze():
     assert result["character_count"] == 111
 
 def test_name():
-    assert text_module.name == "text_stats"
+    assert text_module.name == "text"

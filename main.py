@@ -34,14 +34,14 @@ def main():
         help="Output file name"
     )
     parser.add_argument(
-        "--focus", 
+        "--analyze", 
         nargs='*', 
         choices=[
             "text",
-            "word_stats",
-            "pos_stats",
-            "readability",
-            "sentiment"
+            "words",
+            "pos",
+            "read",
+            "sent"
         ], 
         default=["text"], 
         help="Focus of the analysis"

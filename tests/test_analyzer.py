@@ -32,12 +32,12 @@ def test_get_preprocessed_words():
 def test_generate_analysis():
     analyzer.plug_modules(["text"])
     result = analyzer.generate_analysis()
-    assert result["text_stats"]["character_count"] == 111
-    assert result["text_stats"]["character_per_word"] == 5.29
-    assert result["text_stats"]["word_count"] == 21
-    assert result["text_stats"]["paragraph_count"] == 1
-    assert result["text_stats"]["words_per_paragraph"] == 21.0
-    assert result["text_stats"]["sentences_per_paragraph"] == 1.0
-    assert result["text_stats"]["sentence_count"] == 1
-    assert result["text_stats"]["words_per_sentence"] == 21.0
-    assert result["text_stats"]["unique_word_count"] == 17
+    assert result["text"]["character_count"] == 111
+    assert result["text"]["character_per_word"] == 5.29
+    assert result["text"]["word_count"] == 21
+    assert result["text"]["paragraph_count"] == 1
+    assert result["text"]["words_per_paragraph"] == 21.0
+    assert result["text"]["sentences_per_paragraph"] == 1.0
+    assert result["text"]["sentence_count"] == 1
+    assert result["text"]["words_per_sentence"] == 21.0
+    assert result["text"]["unique_word_count"] == 17

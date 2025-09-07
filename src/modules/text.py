@@ -1,12 +1,12 @@
-# modules/text_module.py
+# modules/text.py
 
-from src.modules.analysis_module import AnalysisModule
+from src.modules.analysis import AnalysisModule
 
 
 class TextModule(AnalysisModule):
     
     def __init__(self, analyzer):
-        super().__init__(analyzer, "text_stats")
+        super().__init__(analyzer, "text")
         self._text = self.analyzer.get_text()
         self._sentences = self.analyzer.get_sentences()
         self._words = self.analyzer.get_words()

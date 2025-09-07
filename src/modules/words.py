@@ -1,15 +1,15 @@
-# modules/word_stats_module.py
+# modules/words.py
 
 import math
 import matplotlib.pyplot as plt
 from collections import Counter
-from src.modules.analysis_module import AnalysisModule
+from src.modules.analysis import AnalysisModule
 
 
-class WordStatModule(AnalysisModule):
+class WordsModule(AnalysisModule):
 
     def __init__(self, analyzer, top_n=20):
-        super().__init__(analyzer, "word_stats")
+        super().__init__(analyzer, "words")
         self.words = [w.lower() for w in analyzer.get_words() if w.isalpha()]
         self.top_n = top_n
         self.word_counts = Counter(self.words)
