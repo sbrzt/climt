@@ -4,6 +4,11 @@ import math
 import matplotlib.pyplot as plt
 from collections import Counter
 from src.modules.analysis import AnalysisModule
+from src.utils.visualization import (
+    print_table,
+    print_plot,
+    save_plot
+)
 
 
 class WordsModule(AnalysisModule):
@@ -26,29 +31,14 @@ class WordsModule(AnalysisModule):
         return word_stats
 
     def print_table(self):
-        print(f"{'Word':<10}{'Count':<10}{'Freq':<10}")
-        for word, count, freq in self.word_freq:
-            print(f"{word:<10}{count:<10}{freq:<10.4f}")
-    
-    def print_plot(self, max_width=60, symbol="#"):
-        max_count = max([count for word, count, freq in self.word_freq])
-        for word, count, freq in self.word_freq:
-            bar = symbol * int(count / max_count * max_width)
-            print(f"{word:<10}{bar}")
+        print_table(self.word_freq, headers=("Word", "Count", "Freq"))
 
-    def show_plot(self):
-        pass
+    def print_plot(self):
+        print_plot(self.word_freq)
 
-    def save_plot(self, filename="word_freq.png"):
-        words = [word for word, count, freq in self.word_freq]
-        counts = [count for word, count, freq in self.word_freq]
-        plt.figure(figsize=(10,6))
-        plt.bar(words, counts, color="skyblue")
-        plt.xticks(rotation=45)
-        plt.ylabel("Count")
-        plt.title("Top Word Frequencies")
-        plt.tight_layout()
-        plt.savefig(filename)
-        plt.close()
-
-    
+    def save_plot(
+        self, 
+        filename="word_freq.png",
+        title="Top Word Frequencies"
+        ):
+        save_plot(self.word_freq, filename=filename, title=title)

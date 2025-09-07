@@ -46,6 +46,15 @@ def main():
         default=["text"], 
         help="Focus of the analysis"
     )
+    parser.add_argument(
+        "--viz",
+        choices=[
+            "table",
+            "plot",
+            "image"
+        ],
+        help="Visualization type"
+    )
 
     args = parser.parse_args()
 
@@ -58,9 +67,19 @@ def main():
         raise Exception("No input text or file provided.")
         
     analyzer = Analyzer(text)
-    analyzer.plug_modules(args.focus)
+    analyzer.plug_modules(args.analyze)
     analyzer.generate_analysis()
     analysis = analyzer.analysis
+
+    if args.viz:
+        for module in analyzer.modules:
+            if module.name in args.analyze:
+                if args.viz == "table" and hasattr(module, "print_table"):
+                    module.print_table()
+                elif args.viz == "plot" and hasattr(module, "print_plot"):
+                    module.print_plot()
+                elif args.viz == "image" and hasattr(module, "save_plot"):
+                    module.save_plot()
 
     if args.output == "stream":
         pprint.pprint(analysis)
