@@ -39,5 +39,6 @@ def save_report(
 
 
 REPORT_GENERATORS = {
-    "txt": generate_txt_report
+    "txt": generate_txt_report,
+    "md": generate_txt_report
 }

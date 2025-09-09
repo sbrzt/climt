@@ -1,1 +1,1 @@
-python3 main.py "This is a bad sample text. And this is a good sample sentence. Maybe even better." --analyze text words pos read sent --output txt --outfile report
+python3 main.py "This is a bad sample text. And this is a good sample sentence. Maybe even better." --analyze text words pos read sent --output md --outfile report

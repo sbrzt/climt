@@ -5,7 +5,7 @@
 
 ## Description
 
-CLIMT (CLI for Modular Text data mining) is a modular data engineering CLI tool for easily producing text mining reports in machine-actionable formats.
+**CLIMT** (_**CLI** for **M**odular **T**ext data mining_) is a modular data engineering CLI tool for easily producing text mining reports in machine-actionable formats.
 
 ## Installation
 
@@ -56,8 +56,7 @@ It is possible to type the command directly in the command line, or type it in t
 * `--file` (Optional): This specifies the path to a text file containing the content to analyze. It is an alternative to providing raw text directly.
 * `--output` (Optional): This option allows you to specify the format of the output report. You can choose from the following:
     * `stream` (default): The output is printed directly to the command line.
-    * `txt`: The output is saved as a plain text file.
-    * `md`: The output is saved as a Markdown file.
+    * `txt` or `md`: The output is saved as a plain text file or in a Markdown file.
 * `--outfile `(Optional): If you select any option other than `stream` as the output format, you can provide a file name for the output file. If not specified, the file will be named according to the format (e.g., `output.txt` or `output.md`).
 * `--analyze` (Optional): This option allows you to specify the focus of the analysis. The available choices are:
     * `text` (default): Performs a general statistical analysis on the text.
