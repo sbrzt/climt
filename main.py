@@ -3,7 +3,7 @@
 import argparse
 import pprint
 from src.analyzer import Analyzer
-from src.report_generator import *
+from src.utils.report import save_report
 
 
 def main():
@@ -87,12 +87,7 @@ def main():
         if not args.outfile:
             print(f"Filename required for .{args.output} output")
         else:
-            if args.output == "txt" or args.output == "md":
-                report_generator = TXTReportGenerator(analysis)
-            else:
-                print("Invalid format choice")
+            save_report(analysis, args.outfile, args.output)
     
-        report_generator.save_report(f"{args.outfile}.{args.output}")
-
 if __name__ == "__main__":
     main()

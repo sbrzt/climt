@@ -5,7 +5,7 @@ from src.modules.readability import ReadabilityModule
 from src.modules.sentiment import SentimentModule
 
 
-module_map = {
+MODULE_MAP = {
     "text": TextModule,
     "words": WordsModule,
     "pos": POSModule,

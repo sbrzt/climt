@@ -1,0 +1,47 @@
+# DATA REPORT FOR report.txt
+
+## TEXT
+- Character Count: 81
+- Character Per Word: 5.06
+- Word Count: 16
+- Paragraph Count: 1
+- Words Per Paragraph: 16.0
+- Sentences Per Paragraph: 3.0
+- Sentence Count: 3
+- Words Per Sentence: 5.333333333333333
+- Unique Word Count: 13
+
+## WORDS
+- This: {'count': 2, 'freq': 12.5}
+- Is: {'count': 2, 'freq': 12.5}
+- A: {'count': 2, 'freq': 12.5}
+- Sample: {'count': 2, 'freq': 12.5}
+- Bad: {'count': 1, 'freq': 6.25}
+- Text: {'count': 1, 'freq': 6.25}
+- And: {'count': 1, 'freq': 6.25}
+- Good: {'count': 1, 'freq': 6.25}
+- Sentence: {'count': 1, 'freq': 6.25}
+- Maybe: {'count': 1, 'freq': 6.25}
+- Even: {'count': 1, 'freq': 6.25}
+- Better: {'count': 1, 'freq': 6.25}
+
+## POS
+- Pron: {'count': 2, 'freq': 12.5}
+- Aux: {'count': 2, 'freq': 12.5}
+- Det: {'count': 2, 'freq': 12.5}
+- Adj: {'count': 2, 'freq': 12.5}
+- Noun: {'count': 4, 'freq': 25.0}
+- Cconj: {'count': 1, 'freq': 6.25}
+- Adv: {'count': 3, 'freq': 18.75}
+
+## READ
+- Flesch Reading Ease: 85.1
+- Flesch Kincaid Grade: 2.71
+- Gunning Fog: 2.1333333333333333
+- Smog Index: 3.1291
+- Automated Readability Index: 0.67
+- Coleman Liau Index: 1.49
+
+## SENT
+- Overall: {'polarity': 0.167, 'subjectivity': 0.589}
+- Sentences: {1: {'content': 'This is a bad sample text.', 'polarity': -0.7, 'subjectivity': 0.667}, 2: {'content': 'And this is a good sample sentence.', 'polarity': 0.7, 'subjectivity': 0.6}, 3: {'content': 'Maybe even better.', 'polarity': 0.5, 'subjectivity': 0.5}}

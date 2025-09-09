@@ -1,36 +1,37 @@
-# LODOT
+# CLIMT
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14994045.svg)](https://doi.org/10.5281/zenodo.14994045)
 
 
 ## Description
 
-LODOT is a modular data engineering CLI tool for easily producing text mining reports in machine-actionable formats.
+CLIMT (CLI for Modular Text data mining) is a modular data engineering CLI tool for easily producing text mining reports in machine-actionable formats.
 
 ## Installation
 
-First, create a virtual environment to manage the project's dependencies:
+First, create a virtual environment to manage the project's dependencies. Using `uv`:
 
 ```bash
-python -m venv venv
+uv init
+uv run
 ```
 
 Second, activate the virtual environtment:
 
 * On Windows:  
 ```bash
-.\venv\Scripts\activate
+.\.venv\Scripts\activate
 ```
 
 * On macOS and Linux:  
 ```bash
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 Finally, install the required dependencies:
 
 ```bash
-pip install -r requirements.txt
+uv add -r requirements.txt
 ```
 
 ## Usage
@@ -58,14 +59,14 @@ It is possible to type the command directly in the command line, or type it in t
     * `txt`: The output is saved as a plain text file.
     * `md`: The output is saved as a Markdown file.
 * `--outfile `(Optional): If you select any option other than `stream` as the output format, you can provide a file name for the output file. If not specified, the file will be named according to the format (e.g., `output.txt` or `output.md`).
-* `--focus` (Optional): This option allows you to specify the focus of the analysis. The available choices are:
+* `--analyze` (Optional): This option allows you to specify the focus of the analysis. The available choices are:
     * `text` (default): Performs a general statistical analysis on the text.
-    * `word_stats`: Performs a statistical analysis on each word in the text. Also allows generating visualizations for word frequencies.
-    * `pos_stats`: Performs a statistical Part-of-Speech (PoS) analysis on the text. Also allows generating visualizations for PoS frequencies.
-    * `readability`: Performs a statistical readability analysis on the text.
-    * `sentiment`: Performs a sentiment analysis on the text.
+    * `words`: Performs a statistical analysis on each word in the text. Also allows generating visualizations for word frequencies.
+    * `pos`: Performs a statistical Part-of-Speech (PoS) analysis on the text. Also allows generating visualizations for PoS frequencies.
+    * `read`: Performs a readability analysis on the text.
+    * `sent`: Performs a sentiment analysis on the text.
 
-You can provide multiple focus areas by separating them with spaces.
+You can provide multiple analysis focuses by separating them with space (e.g. `--analyze text words read`).
 
 ### Examples
 

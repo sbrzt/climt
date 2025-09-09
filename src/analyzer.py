@@ -3,7 +3,7 @@
 import spacy
 from spacy.cli import download
 import string
-from config import module_map
+from config import MODULE_MAP
 
 
 def load_spacy_model(name="en_core_web_sm"):
@@ -72,8 +72,8 @@ class Analyzer():
 
     def plug_modules(self, focus):
         for f in focus:
-            if f in module_map:
-                module = module_map[f](self)
+            if f in MODULE_MAP:
+                module = MODULE_MAP[f](self)
                 module.plug()
 
     def generate_analysis(self):
