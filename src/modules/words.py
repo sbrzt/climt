@@ -3,8 +3,8 @@
 import math
 import matplotlib.pyplot as plt
 from collections import Counter
-from src.modules.analysis import AnalysisModule
-from src.utils.visualization import (
+from modules.analysis import AnalysisModule
+from utils.visualization import (
     print_table,
     print_plot,
     save_plot

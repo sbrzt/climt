@@ -1,7 +1,7 @@
 # src/modules/sentiment.py
 
 from textblob import TextBlob
-from src.modules.analysis import AnalysisModule
+from modules.analysis import AnalysisModule
 
 
 class SentimentModule(AnalysisModule):

@@ -1,7 +1,7 @@
 # src/modules/pos.py
 
 from collections import Counter
-from src.modules.analysis import AnalysisModule
+from modules.analysis import AnalysisModule
 
 
 class POSModule(AnalysisModule):

@@ -2,8 +2,8 @@
 
 import argparse
 import pprint
-from src.analyzer import Analyzer
-from src.utils.report import save_report
+from analyzer import Analyzer
+from utils.report import save_report
 
 
 def main():

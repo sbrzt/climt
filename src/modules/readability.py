@@ -1,7 +1,7 @@
 # src/modules/readability.py
 
 import textstat
-from src.modules.analysis import AnalysisModule
+from modules.analysis import AnalysisModule
 
 
 class ReadabilityModule(AnalysisModule):

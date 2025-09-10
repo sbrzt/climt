@@ -9,7 +9,7 @@ def format_section(
     ) -> str:
     lines = [f"\n## {title.upper()}"]
     for key, value in data.items():
-        item = key.replace("_", " ").title()
+        item = key.replace("_", " ")
         lines.append(f"- {item}: {value}")
     return "\n".join(lines)
 

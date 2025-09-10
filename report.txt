@@ -1,47 +1,47 @@
 # DATA REPORT FOR report.txt
 
 ## TEXT
-- Character Count: 81
-- Character Per Word: 5.06
-- Word Count: 16
-- Paragraph Count: 1
-- Words Per Paragraph: 16.0
-- Sentences Per Paragraph: 3.0
-- Sentence Count: 3
-- Words Per Sentence: 5.333333333333333
-- Unique Word Count: 13
+- character count: 81
+- character per word: 5.06
+- word count: 16
+- paragraph count: 1
+- words per paragraph: 16.0
+- sentences per paragraph: 3.0
+- sentence count: 3
+- words per sentence: 5.333333333333333
+- unique word count: 13
 
 ## WORDS
-- This: {'count': 2, 'freq': 12.5}
-- Is: {'count': 2, 'freq': 12.5}
-- A: {'count': 2, 'freq': 12.5}
-- Sample: {'count': 2, 'freq': 12.5}
-- Bad: {'count': 1, 'freq': 6.25}
-- Text: {'count': 1, 'freq': 6.25}
-- And: {'count': 1, 'freq': 6.25}
-- Good: {'count': 1, 'freq': 6.25}
-- Sentence: {'count': 1, 'freq': 6.25}
-- Maybe: {'count': 1, 'freq': 6.25}
-- Even: {'count': 1, 'freq': 6.25}
-- Better: {'count': 1, 'freq': 6.25}
+- this: {'count': 2, 'freq': 12.5}
+- is: {'count': 2, 'freq': 12.5}
+- a: {'count': 2, 'freq': 12.5}
+- sample: {'count': 2, 'freq': 12.5}
+- bad: {'count': 1, 'freq': 6.25}
+- text: {'count': 1, 'freq': 6.25}
+- and: {'count': 1, 'freq': 6.25}
+- good: {'count': 1, 'freq': 6.25}
+- sentence: {'count': 1, 'freq': 6.25}
+- maybe: {'count': 1, 'freq': 6.25}
+- even: {'count': 1, 'freq': 6.25}
+- better: {'count': 1, 'freq': 6.25}
 
 ## POS
-- Pron: {'count': 2, 'freq': 12.5}
-- Aux: {'count': 2, 'freq': 12.5}
-- Det: {'count': 2, 'freq': 12.5}
-- Adj: {'count': 2, 'freq': 12.5}
-- Noun: {'count': 4, 'freq': 25.0}
-- Cconj: {'count': 1, 'freq': 6.25}
-- Adv: {'count': 3, 'freq': 18.75}
+- PRON: {'count': 2, 'freq': 12.5}
+- AUX: {'count': 2, 'freq': 12.5}
+- DET: {'count': 2, 'freq': 12.5}
+- ADJ: {'count': 2, 'freq': 12.5}
+- NOUN: {'count': 4, 'freq': 25.0}
+- CCONJ: {'count': 1, 'freq': 6.25}
+- ADV: {'count': 3, 'freq': 18.75}
 
 ## READ
-- Flesch Reading Ease: 85.1
-- Flesch Kincaid Grade: 2.71
-- Gunning Fog: 2.1333333333333333
-- Smog Index: 3.1291
-- Automated Readability Index: 0.67
-- Coleman Liau Index: 1.49
+- flesch reading ease: 85.1
+- flesch kincaid grade: 2.71
+- gunning fog: 2.1333333333333333
+- smog index: 3.1291
+- automated readability index: 0.67
+- coleman liau index: 1.49
 
 ## SENT
-- Overall: {'polarity': 0.167, 'subjectivity': 0.589}
-- Sentences: {1: {'content': 'This is a bad sample text.', 'polarity': -0.7, 'subjectivity': 0.667}, 2: {'content': 'And this is a good sample sentence.', 'polarity': 0.7, 'subjectivity': 0.6}, 3: {'content': 'Maybe even better.', 'polarity': 0.5, 'subjectivity': 0.5}}
+- overall: {'polarity': 0.167, 'subjectivity': 0.589}
+- sentences: {1: {'content': 'This is a bad sample text.', 'polarity': -0.7, 'subjectivity': 0.667}, 2: {'content': 'And this is a good sample sentence.', 'polarity': 0.7, 'subjectivity': 0.6}, 3: {'content': 'Maybe even better.', 'polarity': 0.5, 'subjectivity': 0.5}}

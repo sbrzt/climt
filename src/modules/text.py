@@ -1,6 +1,6 @@
 # modules/text.py
 
-from src.modules.analysis import AnalysisModule
+from modules.analysis import AnalysisModule
 
 
 class TextModule(AnalysisModule):

@@ -4,8 +4,8 @@ authors:
   - family-names: Barzaghi
     given-names: Sebastian
     orcid: https://orcid.org/0000-0002-0799-1527
-title: "LODOT"
-version: 1.0.0
+title: "CLIMT"
+version: 2.0.0
 identifiers:
   - type: doi
     value: 10.5281/zenodo.14994045

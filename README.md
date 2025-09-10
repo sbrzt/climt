@@ -12,11 +12,11 @@
 First, create a virtual environment to manage the project's dependencies. Using `uv`:
 
 ```bash
-uv init
-uv run
+uv init         # Initialize the project with uv
+uv run          # The first run generates the .venv directory
 ```
 
-Second, activate the virtual environtment:
+Second, activate the virtual environment:
 
 * On Windows:  
 ```bash
@@ -28,10 +28,21 @@ Second, activate the virtual environtment:
 source .venv/bin/activate
 ```
 
-Finally, install the required dependencies:
+Third, install the required dependencies:
 
 ```bash
 uv add -r requirements.txt
+```
+
+Finally, install this project in editable mode so that the `climt` command is available:
+
+```bash
+uv pip install -e .
+```
+
+Now you can run the tool from the command line:
+```bash
+climt "This is a sample text." --analyze text words
 ```
 
 ## Usage
@@ -41,7 +52,7 @@ The software is designed to analyze a text or a text file and generate reports i
 ### Basic command structure
 
 ```bash
-python3 main.py [input] [options]
+climt [input] [options]
 ```
 
 It is possible to type the command directly in the command line, or type it in the `run.sh` file and then run it via
@@ -72,19 +83,19 @@ You can provide multiple analysis focuses by separating them with space (e.g. `-
 #### Analyze raw text and print the report in the terminal
 
 ```bash
-python main.py "This is a sample text."
+climt "This is a sample text."
 ```
 
 #### Analyze raw text and save the report in a .txt file
 
 ```bash
-python main.py "This is a sample text." --output txt --outfile report.txt
+climt "This is a sample text." --output txt --outfile report.txt
 ```
 
 #### Analyze a text file and save the report in a .md file
 
 ```bash
-python main.py --file input.txt --output md --outfile report.md
+climt --file input.txt --output md --outfile report.md
 ```
 
 ## Testing
@@ -115,7 +126,7 @@ Barzaghi, Sebastian (https://orcid.org/0000-0002-0799-1527).
 ```
 @software{barzaghi_2025_14994045,
   author       = {Barzaghi, Sebastian},
-  title        = {LODOT},
+  title        = {CLIMT},
   month        = mar,
   year         = 2025,
   publisher    = {Zenodo},
