@@ -1,16 +1,28 @@
 # src/utils/report.py
 
-from config import MODULE_MAP
+import os
+from config import MODULE_MAP, REPORT_DIR
+
+
+def format_freq_table(data: dict) -> str:
+    lines = ["| Item | Count | Freq (%) |", "|------|-------|-----------|"]
+    for key, stats in data.items():
+        lines.append(f"| {key} | {stats['count']} | {stats['freq']} |")
+    return "\n".join(lines)
 
 
 def format_section(
     title: str,
     data: dict
     ) -> str:
+
     lines = [f"\n## {title.upper()}"]
-    for key, value in data.items():
-        item = key.replace("_", " ")
-        lines.append(f"- {item}: {value}")
+    if title.lower() in {"words", "pos"}:
+        lines.append(format_freq_table(data))
+    else:
+        for key, value in data.items():
+            item = key.replace("_", " ")
+            lines.append(f"- {item}: {value}")
     return "\n".join(lines)
 
 
@@ -18,12 +30,15 @@ def generate_txt_report(
     analysis: dict,
     filename: str
     ):
+
+    os.makedirs(REPORT_DIR, exist_ok=True)
     sections = [f"# DATA REPORT FOR {filename}"]
     for module in MODULE_MAP.keys():
         if module in analysis:
             sections.append(format_section(module, analysis[module]))
     report_content = "\n".join(sections)
-    with open(filename, "w") as f:
+    filepath = os.path.join(REPORT_DIR, filename)
+    with open(filepath, "w") as f:
         f.write(report_content)
 
 

@@ -13,3 +13,4 @@ MODULE_MAP = {
     "sent": SentimentModule
 }
 
+REPORT_DIR = "output"

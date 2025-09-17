@@ -12,27 +12,31 @@
 - unique word count: 13
 
 ## WORDS
-- this: {'count': 2, 'freq': 12.5}
-- is: {'count': 2, 'freq': 12.5}
-- a: {'count': 2, 'freq': 12.5}
-- sample: {'count': 2, 'freq': 12.5}
-- bad: {'count': 1, 'freq': 6.25}
-- text: {'count': 1, 'freq': 6.25}
-- and: {'count': 1, 'freq': 6.25}
-- good: {'count': 1, 'freq': 6.25}
-- sentence: {'count': 1, 'freq': 6.25}
-- maybe: {'count': 1, 'freq': 6.25}
-- even: {'count': 1, 'freq': 6.25}
-- better: {'count': 1, 'freq': 6.25}
+| Item | Count | Freq (%) |
+|------|-------|-----------|
+| this | 2 | 12.5 |
+| is | 2 | 12.5 |
+| a | 2 | 12.5 |
+| sample | 2 | 12.5 |
+| bad | 1 | 6.25 |
+| text | 1 | 6.25 |
+| and | 1 | 6.25 |
+| good | 1 | 6.25 |
+| sentence | 1 | 6.25 |
+| maybe | 1 | 6.25 |
+| even | 1 | 6.25 |
+| better | 1 | 6.25 |
 
 ## POS
-- PRON: {'count': 2, 'freq': 12.5}
-- AUX: {'count': 2, 'freq': 12.5}
-- DET: {'count': 2, 'freq': 12.5}
-- ADJ: {'count': 2, 'freq': 12.5}
-- NOUN: {'count': 4, 'freq': 25.0}
-- CCONJ: {'count': 1, 'freq': 6.25}
-- ADV: {'count': 3, 'freq': 18.75}
+| Item | Count | Freq (%) |
+|------|-------|-----------|
+| PRON | 2 | 12.5 |
+| AUX | 2 | 12.5 |
+| DET | 2 | 12.5 |
+| ADJ | 2 | 12.5 |
+| NOUN | 4 | 25.0 |
+| CCONJ | 1 | 6.25 |
+| ADV | 3 | 18.75 |
 
 ## READ
 - flesch reading ease: 85.1
