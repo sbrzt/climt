@@ -2,13 +2,15 @@
 
 import os
 from config import MODULE_MAP, REPORT_DIR
+from tabulate import tabulate
 
 
 def format_freq_table(data: dict) -> str:
-    lines = ["| Item | Count | Freq (%) |", "|------|-------|-----------|"]
+    rows = []
+    headers = ["item", "count", "freq (%)"]
     for key, stats in data.items():
-        lines.append(f"| {key} | {stats['count']} | {stats['freq']} |")
-    return "\n".join(lines)
+        rows.append([key, stats["count"], stats["freq"]])
+    return tabulate(rows, headers=headers, tablefmt="github")
 
 
 def format_section(

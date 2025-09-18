@@ -12,31 +12,31 @@
 - unique word count: 13
 
 ## WORDS
-| Item | Count | Freq (%) |
-|------|-------|-----------|
-| this | 2 | 12.5 |
-| is | 2 | 12.5 |
-| a | 2 | 12.5 |
-| sample | 2 | 12.5 |
-| bad | 1 | 6.25 |
-| text | 1 | 6.25 |
-| and | 1 | 6.25 |
-| good | 1 | 6.25 |
-| sentence | 1 | 6.25 |
-| maybe | 1 | 6.25 |
-| even | 1 | 6.25 |
-| better | 1 | 6.25 |
+| item     |   count |   freq (%) |
+|----------|---------|------------|
+| this     |       2 |      12.5  |
+| is       |       2 |      12.5  |
+| a        |       2 |      12.5  |
+| sample   |       2 |      12.5  |
+| bad      |       1 |       6.25 |
+| text     |       1 |       6.25 |
+| and      |       1 |       6.25 |
+| good     |       1 |       6.25 |
+| sentence |       1 |       6.25 |
+| maybe    |       1 |       6.25 |
+| even     |       1 |       6.25 |
+| better   |       1 |       6.25 |
 
 ## POS
-| Item | Count | Freq (%) |
-|------|-------|-----------|
-| PRON | 2 | 12.5 |
-| AUX | 2 | 12.5 |
-| DET | 2 | 12.5 |
-| ADJ | 2 | 12.5 |
-| NOUN | 4 | 25.0 |
-| CCONJ | 1 | 6.25 |
-| ADV | 3 | 18.75 |
+| item   |   count |   freq (%) |
+|--------|---------|------------|
+| PRON   |       2 |      12.5  |
+| AUX    |       2 |      12.5  |
+| DET    |       2 |      12.5  |
+| ADJ    |       2 |      12.5  |
+| NOUN   |       4 |      25    |
+| CCONJ  |       1 |       6.25 |
+| ADV    |       3 |      18.75 |
 
 ## READ
 - flesch reading ease: 85.1
