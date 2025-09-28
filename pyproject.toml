@@ -6,8 +6,11 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "matplotlib>=3.10.6",
+    "odf>=0.0.1",
     "pip>=25.2",
+    "pypdf2>=3.0.1",
     "pytest>=8.4.1",
+    "python-docx>=1.2.0",
     "spacy>=3.8.7",
     "tabulate>=0.9.0",
     "textblob>=0.19.0",
@@ -16,3 +19,11 @@ dependencies = [
 
 [project.scripts]
 climt = "main:main"
+
+[dependency-groups]
+dev = [
+    "climt",
+]
+
+[tool.uv.sources]
+climt = { workspace = true }

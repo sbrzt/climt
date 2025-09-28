@@ -1,1 +1,1 @@
-climt "This is a bad sample text. And this is a good sample sentence. Maybe even better." --analyze text words pos read sent --output txt --outfile report
+climt --files "output/report.txt" "requirements.txt" --analyze text words pos read sent --output txt --outfile report

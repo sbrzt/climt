@@ -4,6 +4,7 @@ import argparse
 import pprint
 from analyzer import Analyzer
 from utils.report import save_report
+from utils.load import load_files
 
 
 def main():
@@ -16,8 +17,9 @@ def main():
         help="Raw text"
     )
     parser.add_argument(
-        "--file", 
-        help="Path to the input text file"
+        "--files",
+        nargs="+",
+        help="Path(s) to one or more input documents"
     )
     parser.add_argument(
         "--output", 
@@ -58,9 +60,9 @@ def main():
 
     args = parser.parse_args()
 
-    if args.file:
-        with open(args.file, 'r') as f:
-            text = f.read()
+    if args.files:
+        texts = [load_files(f) for f in args.files]
+        text = "\n\n".join(texts)
     elif args.input:
         text = args.input
     else:
