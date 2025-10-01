@@ -1,0 +1,60 @@
+# DATA REPORT FOR test2_report.txt
+
+## TEXT
+- character count: 984
+- character per word: 6.35
+- word count: 155
+- paragraph count: 2
+- words per paragraph: 77.5
+- sentences per paragraph: 11.0
+- sentence count: 22
+- words per sentence: 7.045454545454546
+- unique word count: 97
+
+## WORDS
+| item     |   count |   freq (%) |
+|----------|---------|------------|
+| vel      |       5 |       3.23 |
+| in       |       5 |       3.23 |
+| feugiat  |       4 |       2.58 |
+| nunc     |       4 |       2.58 |
+| a        |       4 |       2.58 |
+| sed      |       4 |       2.58 |
+| volutpat |       3 |       1.94 |
+| nisi     |       3 |       1.94 |
+| mi       |       3 |       1.94 |
+| massa    |       3 |       1.94 |
+| quis     |       3 |       1.94 |
+| odio     |       3 |       1.94 |
+| nec      |       3 |       1.94 |
+| lorem    |       3 |       1.94 |
+| non      |       3 |       1.94 |
+| dictum   |       3 |       1.94 |
+| eget     |       3 |       1.94 |
+| maecenas |       2 |       1.29 |
+| eros     |       2 |       1.29 |
+| egestas  |       2 |       1.29 |
+
+## POS
+| item   |   count |   freq (%) |
+|--------|---------|------------|
+| PROPN  |      69 |      44.52 |
+| NOUN   |      49 |      31.61 |
+| ADJ    |      15 |       9.68 |
+| ADP    |       6 |       3.87 |
+| VERB   |       7 |       4.52 |
+| DET    |       4 |       2.58 |
+| X      |       3 |       1.94 |
+| ADV    |       2 |       1.29 |
+
+## READ
+- flesch reading ease: 56.56
+- flesch kincaid grade: 7.1
+- gunning fog: 9.05632798573975
+- smog index: 9.095868883498916
+- automated readability index: 7.66
+- coleman liau index: 10.35
+
+## SENT
+- overall: {'polarity': 0.0, 'subjectivity': 0.0}
+- sentences: {1: {'content': 'Maecenas semper arcu vel eros porta, egestas feugiat libero volutpat.', 'polarity': 0.0, 'subjectivity': 0.0}, 2: {'content': 'Proin rhoncus nisi mi, convallis dignissim massa rutrum ac.', 'polarity': 0.0, 'subjectivity': 0.0}, 3: {'content': 'Etiam quis convallis velit.', 'polarity': 0.0, 'subjectivity': 0.0}, 4: {'content': 'Vivamus odio est, dignissim ac nunc nec, pretium mattis augue.', 'polarity': 0.0, 'subjectivity': 0.0}, 5: {'content': 'Donec a lorem in turpis eleifend ultricies et non risus.', 'polarity': 0.0, 'subjectivity': 0.0}, 6: {'content': 'Cras commodo velit nec leo lacinia interdum.', 'polarity': 0.0, 'subjectivity': 0.0}, 7: {'content': 'Suspendisse nec pulvinar sapien.', 'polarity': 0.0, 'subjectivity': 0.0}, 8: {'content': 'Maecenas volutpat lorem a massa viverra blandit.', 'polarity': 0.0, 'subjectivity': 0.0}, 9: {'content': 'Sed suscipit tempus molestie.', 'polarity': 0.0, 'subjectivity': 0.0}, 10: {'content': 'Sed vulputate malesuada ex eu malesuada.', 'polarity': 0.0, 'subjectivity': 0.0}, 11: {'content': 'Nunc quis eleifend odio.', 'polarity': 0.0, 'subjectivity': 0.0}, 12: {'content': 'Ut dictum posuere dui non feugiat.', 'polarity': 0.0, 'subjectivity': 0.0}, 13: {'content': 'Aenean feugiat id quam id lobortis.', 'polarity': 0.0, 'subjectivity': 0.0}, 14: {'content': 'Nulla sed laoreet lectus.', 'polarity': 0.0, 'subjectivity': 0.0}, 15: {'content': 'Morbi a elit quis mi euismod lobortis in in lorem.', 'polarity': 0.0, 'subjectivity': 0.0}, 16: {'content': 'In laoreet massa vel suscipit ultrices.', 'polarity': 0.0, 'subjectivity': 0.0}, 17: {'content': 'Etiam gravida bibendum mi eget molestie.', 'polarity': 0.0, 'subjectivity': 0.0}, 18: {'content': 'Mauris vel eros eget nibh volutpat aliquet.', 'polarity': 0.0, 'subjectivity': 0.0}, 19: {'content': 'Sed ut feugiat nisi.', 'polarity': 0.0, 'subjectivity': 0.0}, 20: {'content': 'Curabitur vel orci mauris.', 'polarity': 0.0, 'subjectivity': 0.0}, 21: {'content': 'Quisque cursus, ante non fermentum pulvinar, tellus justo fringilla leo, vel efficitur nunc nisi a nisl.', 'polarity': 0.0, 'subjectivity': 0.0}, 22: {'content': 'Morbi dictum egestas odio, eget dictum nunc porttitor in.', 'polarity': 0.0, 'subjectivity': 0.0}}

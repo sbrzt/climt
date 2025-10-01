@@ -5,11 +5,13 @@
 
 ## Description
 
-**CLIMT** (_**CLI** for **M**odular **T**ext data mining_) is a modular data engineering CLI tool for easily producing text mining reports in machine-actionable formats.
+**CLIMT** (_**CLI** for **M**odular **T**ext data mining_) is a modular data engineering CLI tool for easily producing text mining reports in portable formats.
 
 ## Installation
 
-First, create a virtual environment to manage the project's dependencies. Using `uv`:
+First, create a virtual environment to manage the project's dependencies. 
+
+Using `uv`:
 
 ```bash
 uv init         # Initialize the project with uv
@@ -95,7 +97,7 @@ climt "This is a sample text." --output txt --outfile report.txt
 #### Analyze a text file and save the report in a .md file
 
 ```bash
-climt --file input.txt --output md --outfile report.md
+climt --files "input.txt" "other.txt" --output md --outfile report.md
 ```
 
 ## Testing

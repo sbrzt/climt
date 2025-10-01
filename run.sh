@@ -1,1 +1,1 @@
-climt --files "output/report.txt" "requirements.txt" --analyze text words pos read sent --output txt --outfile report
+climt --files data/test1.txt data/test2.txt --analyze text words pos read sent --output txt --outfile report

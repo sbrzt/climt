@@ -1,0 +1,61 @@
+# DATA REPORT FOR test1_report.txt
+
+## TEXT
+- character count: 1886
+- character per word: 6.78
+- word count: 278
+- paragraph count: 3
+- words per paragraph: 92.66666666666667
+- sentences per paragraph: 11.0
+- sentence count: 33
+- words per sentence: 8.424242424242424
+- unique word count: 130
+
+## WORDS
+| item         |   count |   freq (%) |
+|--------------|---------|------------|
+| pellentesque |       8 |       2.88 |
+| vel          |       6 |       2.16 |
+| et           |       6 |       2.16 |
+| nunc         |       6 |       2.16 |
+| nibh         |       6 |       2.16 |
+| sit          |       5 |       1.8  |
+| amet         |       5 |       1.8  |
+| a            |       5 |       1.8  |
+| integer      |       5 |       1.8  |
+| odio         |       5 |       1.8  |
+| ac           |       5 |       1.8  |
+| ipsum        |       4 |       1.44 |
+| in           |       4 |       1.44 |
+| eget         |       4 |       1.44 |
+| orci         |       4 |       1.44 |
+| neque        |       4 |       1.44 |
+| eu           |       4 |       1.44 |
+| egestas      |       4 |       1.44 |
+| turpis       |       4 |       1.44 |
+| sed          |       4 |       1.44 |
+
+## POS
+| item   |   count |   freq (%) |
+|--------|---------|------------|
+| PROPN  |     131 |      47.12 |
+| NOUN   |      90 |      32.37 |
+| ADJ    |      21 |       7.55 |
+| ADP    |       6 |       2.16 |
+| DET    |       5 |       1.8  |
+| X      |       2 |       0.72 |
+| VERB   |      18 |       6.47 |
+| ADV    |       4 |       1.44 |
+| PRON   |       1 |       0.36 |
+
+## READ
+- flesch reading ease: 51.41
+- flesch kincaid grade: 8.17
+- gunning fog: 9.855770703424135
+- smog index: 9.80015041476705
+- automated readability index: 10.14
+- coleman liau index: 13.21
+
+## SENT
+- overall: {'polarity': 0.0, 'subjectivity': 0.0}
+- sentences: {1: {'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'polarity': 0.0, 'subjectivity': 0.0}, 2: {'content': 'Praesent in lectus a est fringilla vehicula vel eget nisl.', 'polarity': 0.0, 'subjectivity': 0.0}, 3: {'content': 'Curabitur molestie auctor dolor, vel malesuada elit condimentum volutpat.', 'polarity': 0.0, 'subjectivity': 0.0}, 4: {'content': 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer sit amet ultricies dui.', 'polarity': 0.0, 'subjectivity': 0.0}, 5: {'content': 'Proin orci risus, efficitur vel sem sit amet, pellentesque suscipit neque.', 'polarity': 0.0, 'subjectivity': 0.0}, 6: {'content': 'Donec nunc odio, mattis vitae purus eu, molestie egestas lorem.', 'polarity': 0.0, 'subjectivity': 0.0}, 7: {'content': 'Integer et bibendum turpis, sit amet pellentesque ipsum.', 'polarity': 0.0, 'subjectivity': 0.0}, 8: {'content': 'Pellentesque vel sollicitudin metus.', 'polarity': 0.0, 'subjectivity': 0.0}, 9: {'content': 'Cras pharetra felis a neque ornare imperdiet.', 'polarity': 0.0, 'subjectivity': 0.0}, 10: {'content': 'Sed egestas ultrices nibh, at volutpat odio pellentesque nec.', 'polarity': 0.0, 'subjectivity': 0.0}, 11: {'content': 'Praesent posuere nisl consectetur eros rutrum, a scelerisque lectus sagittis.', 'polarity': 0.0, 'subjectivity': 0.0}, 12: {'content': 'Sed tempor porta lacus et pretium.', 'polarity': 0.0, 'subjectivity': 0.0}, 13: {'content': 'Nulla aliquam eros sagittis accumsan placerat.', 'polarity': 0.0, 'subjectivity': 0.0}, 14: {'content': 'Aenean velit eros, maximus dictum velit eget, mattis pretium nibh.', 'polarity': 0.0, 'subjectivity': 0.0}, 15: {'content': 'Integer sit amet molestie nunc.', 'polarity': 0.0, 'subjectivity': 0.0}, 16: {'content': 'Morbi rutrum eleifend arcu ut mollis.', 'polarity': 0.0, 'subjectivity': 0.0}, 17: {'content': 'Pellentesque id quam rutrum, porta dolor et, ultricies ante.', 'polarity': 0.0, 'subjectivity': 0.0}, 18: {'content': 'Nunc vel nibh eu tellus maximus blandit ac ut eros.', 'polarity': 0.0, 'subjectivity': 0.0}, 19: {'content': 'Vivamus iaculis magna ac orci mattis sagittis.', 'polarity': 0.0, 'subjectivity': 0.0}, 20: {'content': 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.', 'polarity': 0.0, 'subjectivity': 0.0}, 21: {'content': 'Curabitur vel elit est.', 'polarity': 0.0, 'subjectivity': 0.0}, 22: {'content': 'Integer nunc sem, pellentesque non tellus non, pretium consectetur justo.', 'polarity': 0.0, 'subjectivity': 0.0}, 23: {'content': 'Sed accumsan laoreet scelerisque.', 'polarity': 0.0, 'subjectivity': 0.0}, 24: {'content': 'Etiam laoreet purus a lorem semper scelerisque.', 'polarity': 0.0, 'subjectivity': 0.0}, 25: {'content': 'Nunc nibh quam, tristique eget viverra eu, venenatis vitae lacus.', 'polarity': 0.0, 'subjectivity': 0.0}, 26: {'content': 'Ut nec nibh neque.', 'polarity': 0.0, 'subjectivity': 0.0}, 27: {'content': 'Donec maximus odio eget lectus efficitur laoreet.', 'polarity': 0.0, 'subjectivity': 0.0}, 28: {'content': 'Cras ac tortor ullamcorper libero ultricies egestas at ac purus.', 'polarity': 0.0, 'subjectivity': 0.0}, 29: {'content': 'In pellentesque lacinia fringilla.', 'polarity': 0.0, 'subjectivity': 0.0}, 30: {'content': 'Nam lacinia turpis tincidunt odio euismod, sed rhoncus neque tincidunt.', 'polarity': 0.0, 'subjectivity': 0.0}, 31: {'content': 'Etiam gravida in nibh quis semper.', 'polarity': 0.0, 'subjectivity': 0.0}, 32: {'content': 'Duis rutrum, risus non tempor posuere, dui odio suscipit ipsum, eu pharetra massa velit a turpis.', 'polarity': 0.0, 'subjectivity': 0.0}, 33: {'content': 'Integer hendrerit convallis nunc, ut placerat orci facilisis id.', 'polarity': 0.0, 'subjectivity': 0.0}}

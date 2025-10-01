@@ -1,62 +1,61 @@
 # DATA REPORT FOR report.txt
 
 ## TEXT
-- character count: 4732
-- character per word: 23.43
-- word count: 202
-- paragraph count: 119
-- words per paragraph: 1.6974789915966386
-- sentences per paragraph: 0.058823529411764705
-- sentence count: 7
-- words per sentence: 28.857142857142858
-- unique word count: 71
+- character count: 2872
+- character per word: 6.63
+- word count: 433
+- paragraph count: 5
+- words per paragraph: 86.6
+- sentences per paragraph: 10.8
+- sentence count: 54
+- words per sentence: 8.018518518518519
+- unique word count: 153
 
 ## WORDS
 | item         |   count |   freq (%) |
 |--------------|---------|------------|
-| count        |      15 |       7.43 |
-| per          |       9 |       4.46 |
-| polarity     |       8 |       3.96 |
-| subjectivity |       8 |       3.96 |
-| word         |       7 |       3.47 |
-| paragraph    |       7 |       3.47 |
-| sentence     |       7 |       3.47 |
-| index        |       7 |       3.47 |
-| words        |       6 |       2.97 |
-| content      |       6 |       2.97 |
-| character    |       5 |       2.48 |
-| sentences    |       5 |       2.48 |
-| item         |       5 |       2.48 |
-| freq         |       5 |       2.48 |
-| text         |       4 |       1.98 |
-| this         |       4 |       1.98 |
-| is           |       4 |       1.98 |
-| a            |       4 |       1.98 |
-| sample       |       4 |       1.98 |
-| flesch       |       4 |       1.98 |
+| vel          |      11 |       2.54 |
+| nunc         |      10 |       2.31 |
+| in           |       9 |       2.08 |
+| a            |       9 |       2.08 |
+| pellentesque |       8 |       1.85 |
+| odio         |       8 |       1.85 |
+| sed          |       8 |       1.85 |
+| eget         |       7 |       1.62 |
+| et           |       7 |       1.62 |
+| nibh         |       7 |       1.62 |
+| ac           |       7 |       1.62 |
+| lorem        |       6 |       1.39 |
+| egestas      |       6 |       1.39 |
+| eros         |       6 |       1.39 |
+| ut           |       6 |       1.39 |
+| non          |       6 |       1.39 |
+| sit          |       5 |       1.15 |
+| amet         |       5 |       1.15 |
+| molestie     |       5 |       1.15 |
+| volutpat     |       5 |       1.15 |
 
 ## POS
 | item   |   count |   freq (%) |
 |--------|---------|------------|
-| NOUN   |     118 |      58.42 |
-| ADP    |      11 |       5.45 |
-| ADJ    |      16 |       7.92 |
-| PROPN  |      27 |      13.37 |
-| DET    |       6 |       2.97 |
-| AUX    |       4 |       1.98 |
-| ADV    |       7 |       3.47 |
-| VERB   |       8 |       3.96 |
-| CCONJ  |       2 |       0.99 |
-| PRON   |       3 |       1.49 |
+| PROPN  |     200 |      46.19 |
+| NOUN   |     139 |      32.1  |
+| ADJ    |      36 |       8.31 |
+| ADP    |      12 |       2.77 |
+| DET    |       9 |       2.08 |
+| X      |       5 |       1.15 |
+| VERB   |      25 |       5.77 |
+| ADV    |       6 |       1.39 |
+| PRON   |       1 |       0.23 |
 
 ## READ
-- flesch reading ease: 67.71
-- flesch kincaid grade: 5.07
-- gunning fog: 8.275799890049479
-- smog index: 8.201025600215132
-- automated readability index: 5.5
-- coleman liau index: 9.49
+- flesch reading ease: 53.31
+- flesch kincaid grade: 7.77
+- gunning fog: 9.545877378435518
+- smog index: 9.527746774549643
+- automated readability index: 9.23
+- coleman liau index: 12.19
 
 ## SENT
-- overall: {'polarity': -0.285, 'subjectivity': 0.76}
-- sentences: {1: {'content': '# DATA REPORT FOR report.txt\n\n## TEXT\n- character count: 1612\n- character per word: 15.96\n- word count: 101\n- paragraph count: 46\n- words per paragraph: 2.1956521739130435\n- sentences per paragraph: 0.043478260869565216\n- sentence count: 2\n- words per sentence: 50.5\n- unique word count: 57\n\n## WORDS\n| item         |   count |   freq (%) |\n|--------------|---------|------------|\n| count        |       7 |       6.93 |\n| per          |       4 |       3.96 |\n| sentence     |       4 |       3.96 |\n| polarity     |       4 |       3.96 |\n| subjectivity |       4 |       3.96 |\n| text         |       3 |       2.97 |\n| word         |       3 |       2.97 |\n| paragraph    |       3 |       2.97 |\n| words        |       3 |       2.97 |\n| this         |       3 |       2.97 |\n| is           |       3 |       2.97 |\n| a            |       3 |       2.97 |\n| sample       |       3 |       2.97 |', 'polarity': 0.375, 'subjectivity': 1.0}, 2: {'content': "| index        |       3 |       2.97 |\n| content      |       3 |       2.97 |\n| character    |       2 |       1.98 |\n| sentences    |       2 |       1.98 |\n| item         |       2 |       1.98 |\n| freq         |       2 |       1.98 |\n| bad          |       2 |       1.98 |\n\n## POS\n| item   |   count |   freq (%) |\n|--------|---------|------------|\n| NOUN   |      55 |      54.46 |\n| ADP    |       5 |       4.95 |\n| ADJ    |      10 |       9.9  |\n| PROPN  |      11 |      10.89 |\n| DET    |       4 |       3.96 |\n| AUX    |       3 |       2.97 |\n| CCONJ  |       2 |       1.98 |\n| ADV    |       5 |       4.95 |\n| VERB   |       4 |       3.96 |\n| PRON   |       2 |       1.98 |\n\n## READ\n- flesch reading ease: 75.89\n- flesch kincaid grade: 3.79\n- gunning fog: 6.372907847606644\n- smog index: 7.222845823187471\n- automated readability index: -1.76\n- coleman liau index: 2.76\n\n## SENT\n- overall: {'polarity': -0.134, 'subjectivity': 0.752}\n- sentences: {1: {'content': '# DATA REPORT FOR report.txt\\n\\n## TEXT\\n- character count: 81\\n- character per word: 5.06\\n- word count: 16\\n- paragraph count: 1\\n- words per paragraph: 16.0\\n- sentences per paragraph: 3.0\\n- sentence count: 3\\n- words per sentence: 5.333333333333333\\n- unique word count: 13\\n\\n## WORDS\\n| item     |   count |   freq (%) |\\n|----------|---------|------------|\\n| this     |       2 |      12.5  |\\n| is       |       2 |      12.5  |\\n|", 'polarity': -0.429, 'subjectivity': 0.778}, 3: {'content': 'a        |       2 |      12.5  |\\n| sample   |       2 |      12.5  |\\n| bad      |       1 |       6.25 |\\n| text     |       1 |       6.25 |\\n| and      |       1 |       6.25 |\\n| good     |       1 |       6.25 |\\n| sentence |       1 |       6.25 |\\n|', 'polarity': 0.0, 'subjectivity': 0.633}, 4: {'content': 'maybe    |       1 |       6.25 |\\n| even     |       1 |       6.25 |\\n| better   |       1 |       6.25 |\\n\\n## POS\\n| item   |   count |   freq (%) |\\n|--------|---------|------------|\\n| PRON   |       2\', \'polarity\': 0.275, \'subjectivity\': 0.753}, 2: {\'content\': "|      12.5  |\\n|', 'polarity': -0.125, 'subjectivity': 0.75}, 5: {'content': 'AUX    |       2 |      12.5  |\\n| DET    |       2 |      12.5  |\\n|', 'polarity': 0.0, 'subjectivity': 0.0}, 6: {'content': 'ADJ    |       2 |      12.5  |\\n|', 'polarity': 0.0, 'subjectivity': 0.0}, 7: {'content': 'NOUN   |       4 |      25    |\\n| CCONJ  |       1 |       6.25 |\\n| ADV    |       3 |      18.75 |\\n\\n## READ\\n- flesch reading ease: 85.1\\n- flesch kincaid grade: 2.71\\n- gunning fog: 2.1333333333333333\\n- smog index: 3.1291\\n- automated readability index: 0.67\\n- coleman liau index: 1.49\\n\\n## SENT\\n- overall: {\'polarity\': 0.167, \'subjectivity\': 0.589}\\n- sentences: {1: {\'content\': \'This is a bad sample text.\', \'polarity\': -0.7, \'subjectivity\': 0.667}, 2: {\'content\': \'And this is a good sample sentence.\', \'polarity\': 0.7, \'subjectivity\': 0.6}, 3: {\'content\': \'Maybe even better.\', \'polarity\': 0.5, \'subjectivity\': 0.5}}", \'polarity\': -0.361, \'subjectivity\': 0.752}}\n\nannotated-types==0.7.0\nblis==1.3.0\ncatalogue==2.0.10\ncertifi==2025.8.3\ncharset-normalizer==3.4.3\nclick==8.2.1\ncloudpathlib==0.22.0\ncolorama==0.4.6 ; sys_platform == \'win32\'\nconfection==0.1.5\ncontourpy==1.3.3\ncycler==0.12.1\ncymem==2.0.11\nfonttools==4.59.2\nidna==3.10\niniconfig==2.1.0\njinja2==3.1.6\njoblib==1.5.2\nkiwisolver==1.4.9\nlangcodes==3.5.0\nlanguage-data==1.3.0\nmarisa-trie==1.3.1\nmarkdown-it-py==4.0.0\nmarkupsafe==3.0.2\nmatplotlib==3.10.6\nmdurl==0.1.2\nmurmurhash==1.0.13\nnltk==3.9.1\nnumpy==2.3.2\npackaging==25.0\npillow==11.3.0\npip==25.2\npluggy==1.6.0\npreshed==3.0.10\npydantic==2.11.7\npydantic-core==2.33.2\npygments==2.19.2\npyparsing==3.2.3\npyphen==0.17.2\npytest==8.4.1\npython-dateutil==2.9.0.post0\nregex==2025.9.1\nrequests==2.32.5\nrich==14.1.0\nsetuptools==80.9.0\nshellingham==1.5.4\nsix==1.17.0\nsmart-open==7.3.0.post1\nspacy==3.8.7\nspacy-legacy==3.0.12\nspacy-loggers==1.0.5\nsrsly==2.5.1\ntextblob==0.19.0\ntextstat==0.7.10\nthinc==8.3.6\ntqdm==4.67.1\ntyper==0.17.3\ntyping-extensions==4.15.0\ntyping-inspection==0.4.1\nurllib3==2.5.0\nwasabi==1.1.3\nweasel==0.4.1\nwrapt==1.17.3', 'polarity': -0.361, 'subjectivity': 0.752}}
+- overall: {'polarity': 0.0, 'subjectivity': 0.0}
+- sentences: {1: {'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'polarity': 0.0, 'subjectivity': 0.0}, 2: {'content': 'Praesent in lectus a est fringilla vehicula vel eget nisl.', 'polarity': 0.0, 'subjectivity': 0.0}, 3: {'content': 'Curabitur molestie auctor dolor, vel malesuada elit condimentum volutpat.', 'polarity': 0.0, 'subjectivity': 0.0}, 4: {'content': 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer sit amet ultricies dui.', 'polarity': 0.0, 'subjectivity': 0.0}, 5: {'content': 'Proin orci risus, efficitur vel sem sit amet, pellentesque suscipit neque.', 'polarity': 0.0, 'subjectivity': 0.0}, 6: {'content': 'Donec nunc odio, mattis vitae purus eu, molestie egestas lorem.', 'polarity': 0.0, 'subjectivity': 0.0}, 7: {'content': 'Integer et bibendum turpis, sit amet pellentesque ipsum.', 'polarity': 0.0, 'subjectivity': 0.0}, 8: {'content': 'Pellentesque vel sollicitudin metus.', 'polarity': 0.0, 'subjectivity': 0.0}, 9: {'content': 'Cras pharetra felis a neque ornare imperdiet.', 'polarity': 0.0, 'subjectivity': 0.0}, 10: {'content': 'Sed egestas ultrices nibh, at volutpat odio pellentesque nec.', 'polarity': 0.0, 'subjectivity': 0.0}, 11: {'content': 'Praesent posuere nisl consectetur eros rutrum, a scelerisque lectus sagittis.', 'polarity': 0.0, 'subjectivity': 0.0}, 12: {'content': 'Sed tempor porta lacus et pretium.', 'polarity': 0.0, 'subjectivity': 0.0}, 13: {'content': 'Nulla aliquam eros sagittis accumsan placerat.', 'polarity': 0.0, 'subjectivity': 0.0}, 14: {'content': 'Aenean velit eros, maximus dictum velit eget, mattis pretium nibh.', 'polarity': 0.0, 'subjectivity': 0.0}, 15: {'content': 'Integer sit amet molestie nunc.', 'polarity': 0.0, 'subjectivity': 0.0}, 16: {'content': 'Morbi rutrum eleifend arcu ut mollis.', 'polarity': 0.0, 'subjectivity': 0.0}, 17: {'content': 'Pellentesque id quam rutrum, porta dolor et, ultricies ante.', 'polarity': 0.0, 'subjectivity': 0.0}, 18: {'content': 'Nunc vel nibh eu tellus maximus blandit ac ut eros.', 'polarity': 0.0, 'subjectivity': 0.0}, 19: {'content': 'Vivamus iaculis magna ac orci mattis sagittis.', 'polarity': 0.0, 'subjectivity': 0.0}, 20: {'content': 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.', 'polarity': 0.0, 'subjectivity': 0.0}, 21: {'content': 'Curabitur vel elit est.', 'polarity': 0.0, 'subjectivity': 0.0}, 22: {'content': 'Integer nunc sem, pellentesque non tellus non, pretium consectetur justo.', 'polarity': 0.0, 'subjectivity': 0.0}, 23: {'content': 'Sed accumsan laoreet scelerisque.', 'polarity': 0.0, 'subjectivity': 0.0}, 24: {'content': 'Etiam laoreet purus a lorem semper scelerisque.', 'polarity': 0.0, 'subjectivity': 0.0}, 25: {'content': 'Nunc nibh quam, tristique eget viverra eu, venenatis vitae lacus.', 'polarity': 0.0, 'subjectivity': 0.0}, 26: {'content': 'Ut nec nibh neque.', 'polarity': 0.0, 'subjectivity': 0.0}, 27: {'content': 'Donec maximus odio eget lectus efficitur laoreet.', 'polarity': 0.0, 'subjectivity': 0.0}, 28: {'content': 'Cras ac tortor ullamcorper libero ultricies egestas at ac purus.', 'polarity': 0.0, 'subjectivity': 0.0}, 29: {'content': 'In pellentesque lacinia fringilla.', 'polarity': 0.0, 'subjectivity': 0.0}, 30: {'content': 'Nam lacinia turpis tincidunt odio euismod, sed rhoncus neque tincidunt.', 'polarity': 0.0, 'subjectivity': 0.0}, 31: {'content': 'Etiam gravida in nibh quis semper.', 'polarity': 0.0, 'subjectivity': 0.0}, 32: {'content': 'Duis rutrum, risus non tempor posuere, dui odio suscipit ipsum, eu pharetra massa velit a turpis.', 'polarity': 0.0, 'subjectivity': 0.0}, 33: {'content': 'Integer hendrerit convallis nunc, ut placerat orci facilisis id.\n\nMaecenas semper arcu vel eros porta, egestas feugiat libero volutpat.', 'polarity': 0.0, 'subjectivity': 0.0}, 34: {'content': 'Proin rhoncus nisi mi, convallis dignissim massa rutrum ac.', 'polarity': 0.0, 'subjectivity': 0.0}, 35: {'content': 'Etiam quis convallis velit.', 'polarity': 0.0, 'subjectivity': 0.0}, 36: {'content': 'Vivamus odio est, dignissim ac nunc nec, pretium mattis augue.', 'polarity': 0.0, 'subjectivity': 0.0}, 37: {'content': 'Donec a lorem in turpis eleifend ultricies et non risus.', 'polarity': 0.0, 'subjectivity': 0.0}, 38: {'content': 'Cras commodo velit nec leo lacinia interdum.', 'polarity': 0.0, 'subjectivity': 0.0}, 39: {'content': 'Suspendisse nec pulvinar sapien.', 'polarity': 0.0, 'subjectivity': 0.0}, 40: {'content': 'Maecenas volutpat lorem a massa viverra blandit.', 'polarity': 0.0, 'subjectivity': 0.0}, 41: {'content': 'Sed suscipit tempus molestie.', 'polarity': 0.0, 'subjectivity': 0.0}, 42: {'content': 'Sed vulputate malesuada ex eu malesuada.', 'polarity': 0.0, 'subjectivity': 0.0}, 43: {'content': 'Nunc quis eleifend odio.', 'polarity': 0.0, 'subjectivity': 0.0}, 44: {'content': 'Ut dictum posuere dui non feugiat.', 'polarity': 0.0, 'subjectivity': 0.0}, 45: {'content': 'Aenean feugiat id quam id lobortis.', 'polarity': 0.0, 'subjectivity': 0.0}, 46: {'content': 'Nulla sed laoreet lectus.', 'polarity': 0.0, 'subjectivity': 0.0}, 47: {'content': 'Morbi a elit quis mi euismod lobortis in in lorem.', 'polarity': 0.0, 'subjectivity': 0.0}, 48: {'content': 'In laoreet massa vel suscipit ultrices.', 'polarity': 0.0, 'subjectivity': 0.0}, 49: {'content': 'Etiam gravida bibendum mi eget molestie.', 'polarity': 0.0, 'subjectivity': 0.0}, 50: {'content': 'Mauris vel eros eget nibh volutpat aliquet.', 'polarity': 0.0, 'subjectivity': 0.0}, 51: {'content': 'Sed ut feugiat nisi.', 'polarity': 0.0, 'subjectivity': 0.0}, 52: {'content': 'Curabitur vel orci mauris.', 'polarity': 0.0, 'subjectivity': 0.0}, 53: {'content': 'Quisque cursus, ante non fermentum pulvinar, tellus justo fringilla leo, vel efficitur nunc nisi a nisl.', 'polarity': 0.0, 'subjectivity': 0.0}, 54: {'content': 'Morbi dictum egestas odio, eget dictum nunc porttitor in.', 'polarity': 0.0, 'subjectivity': 0.0}}

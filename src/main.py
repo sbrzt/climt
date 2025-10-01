@@ -2,6 +2,7 @@
 
 import argparse
 import pprint
+from pathlib import Path
 from analyzer import Analyzer
 from utils.report import save_report
 from utils.load import load_files
@@ -20,6 +21,12 @@ def main():
         "--files",
         nargs="+",
         help="Path(s) to one or more input documents"
+    )
+    parser.add_argument(
+        "--multi-mode",
+        choices=["merge", "separate"],
+        default="merge",
+        help="How to handle multiple input files: 'merge' into one analysis or 'separate' analyses."
     )
     parser.add_argument(
         "--output", 
@@ -48,40 +55,36 @@ def main():
         default=["text"], 
         help="Focus of the analysis"
     )
-    parser.add_argument(
-        "--viz",
-        choices=[
-            "table",
-            "plot",
-            "image"
-        ],
-        help="Visualization type"
-    )
+
 
     args = parser.parse_args()
 
     if args.files:
-        texts = [load_files(f) for f in args.files]
-        text = "\n\n".join(texts)
+        texts = load_files(args.files)
+        if args.multi_mode == "merge":
+            text = "\n\n".join(texts)
+            analyzer = Analyzer(text)
+            analyzer.plug_modules(args.analyze)
+            analyzer.generate_analysis()
+            analysis = analyzer.analysis
+            save_report(analysis, args.outfile, args.output)
+        else:
+            for filepath, text in zip(args.files, texts):
+                analyzer = Analyzer(text)
+                analyzer.plug_modules(args.analyze)
+                analyzer.generate_analysis()
+                analysis = analyzer.analysis
+                base = Path(filepath).stem
+                save_report(analysis, f"{base}_{args.outfile}", args.output)
     elif args.input:
         text = args.input
+        analyzer = Analyzer(text)
+        analyzer.plug_modules(args.analyze)
+        analyzer.generate_analysis()
+        analysis = analyzer.analysis
+        save_report(analysis, args.outfile, args.output)
     else:
         raise Exception("No input text or file provided.")
-        
-    analyzer = Analyzer(text)
-    analyzer.plug_modules(args.analyze)
-    analyzer.generate_analysis()
-    analysis = analyzer.analysis
-
-    if args.viz:
-        for module in analyzer.modules:
-            if module.name in args.analyze:
-                if args.viz == "table" and hasattr(module, "print_table"):
-                    module.print_table()
-                elif args.viz == "plot" and hasattr(module, "print_plot"):
-                    module.print_plot()
-                elif args.viz == "image" and hasattr(module, "save_plot"):
-                    module.save_plot()
 
     if args.output == "stream":
         pprint.pprint(analysis)

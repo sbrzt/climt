@@ -14,3 +14,5 @@ MODULE_MAP = {
 }
 
 REPORT_DIR = "output"
+
+SUPPORTED_EXTENSIONS = {".txt", ".docx", ".pdf"}
