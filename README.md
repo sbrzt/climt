@@ -66,7 +66,7 @@ It is possible to type the command directly in the command line, or type it in t
 ### Arguments and options
 
 * `input` (Optional): A string representing the raw text to analyze. If not provided, you must specify a file using the `--file` option.
-* `--file` (Optional): This specifies the path to a text file containing the content to analyze. It is an alternative to providing raw text directly.
+* `--files` (Optional): This specifies the path to one or more text files containing the content to analyze. It is an alternative to providing raw text directly.
 * `--output` (Optional): This option allows you to specify the format of the output report. You can choose from the following:
     * `stream` (default): The output is printed directly to the command line.
     * `txt` or `md`: The output is saved as a plain text file or in a Markdown file.
